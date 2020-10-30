@@ -1,5 +1,5 @@
-# Ojelmistotekniikka, harjoitustyö  
-muutos2
+# Ojelmistotekniikka, harjoitustyö
+
 ## Tehtävät
 
 ### Viikko 1
