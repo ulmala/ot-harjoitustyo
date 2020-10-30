@@ -1,0 +1,113 @@
+commit 52295c98d4ce5131d643aa9e0f7f46dd3205c327
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:32:10 2020 +0200
+
+    muutos
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 43407399765e229dbb958852f601369ddc124e25
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:28:36 2020 +0200
+
+    lisäys
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 3ada5463365c21ff4e4346b5d3ea7441bd561e95
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:18:58 2020 +0200
+
+    asd
+
+ eka.txt    | 6 ++++++
+ kolmas.txt | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit 36e94f8feda2cf3b2da4e0505af714b2e5be6f07
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:16:35 2020 +0200
+
+    muutos
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ef1e1fbbf8383851512f26f698de1802a71d9a11
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:15:42 2020 +0200
+
+    poisto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit ba7dbc19ca887be6ce01505621f4325cdb70a4c4
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:11:58 2020 +0200
+
+    update
+
+ tiedosto.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 650ea46a3808ad048cdae47bc856534bb6afbcc9
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:11:13 2020 +0200
+
+    lisäys
+
+ tiedosto.txt | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 1b47acb0122ac4c4e7d6ffe56dbcfbc3825fd8d7
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:04:40 2020 +0200
+
+    lisäys
+
+ stuff/s.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a6defc519625ac1bbef4beaff7900671d22c0cc0
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:03:22 2020 +0200
+
+    muutokset
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 541e9bc96843d4d080c5c56c3eca2536da1bf0f8
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Sat Oct 31 00:02:36 2020 +0200
+
+    lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 38a32ce1e82f255355e8d4436325f906395e221f
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Fri Oct 30 23:55:39 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit e4eb12983b34342916c68c23e5176d1a98101d27
+Author: Olli <ulmala.olli@hotmail.com>
+Date:   Fri Oct 30 23:45:43 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
