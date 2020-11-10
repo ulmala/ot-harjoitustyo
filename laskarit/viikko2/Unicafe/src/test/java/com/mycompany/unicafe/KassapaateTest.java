@@ -12,10 +12,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author ulmaa
- */
 public class KassapaateTest {
     
     Kassapaate kassapaate;
@@ -128,12 +124,3 @@ public class KassapaateTest {
         assertEquals(100000, kassapaate.kassassaRahaa());
     }
 }
-/*
-
-korttiosto toimii sekä edullisten että maukkaiden lounaiden osalta
-    jos kortilla on tarpeeksi rahaa, veloitetaan summa kortilta ja palautetaan true
-    jos kortilla on tarpeeksi rahaa, myytyjen lounaiden määrä kasvaa
-    jos kortilla ei ole tarpeeksi rahaa, kortin rahamäärä ei muutu, myytyjen lounaiden määrä muuttumaton ja palautetaan false
-    kassassa oleva rahamäärä ei muutu kortilla ostettaessa
-kortille rahaa ladattaessa kortin saldo muuttuu ja kassassa oleva rahamäärä kasvaa ladatulla summalla
-*/
