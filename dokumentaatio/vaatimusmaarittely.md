@@ -3,10 +3,10 @@
 ## Sovelluksen tarkoitus  
 
 Sovellus on tietovisatyyppinen peli. Peli kysyy käyttäjältä kysymyksiä eri aihealueilta ja käyttäjän on tarkoitus vastata mahdollisimman moneen kysymykseen oikein. 
-Pelaaja pelaa yksin "tietokonetta vastaan".  
+Pelaaja pelaa itseään vastaan.  
 Peli kertoo oliko pelaajan vastaus oikein vai väärin sekä tarjoaa mallivastauksen/perustelun kysymykseen. 
 
-## Suunnitellut toiminnallisuudet  
+## Perusversion toiminnallisuudet  
 
 ### Ennen kirjautumista
 * pelaaja voi luoda itselleen tunnuksen
@@ -18,5 +18,14 @@ Peli kertoo oliko pelaajan vastaus oikein vai väärin sekä tarjoaa mallivastau
 * pelaaja näkee listauksen omista pelatuista peleistä
   * oikeiden vastausten määrä per peli
 * pelaaja voi aloittaa uuden pelin
-* pelaaja voi kirjautua ulos
-  * vaihtaa esim. toiseen tunnukseen
+* pelaaja voi kirjautua ulos  
+
+## Jatkokehitysideat  
+* pelaaja voi lisätä muita käyttäjiä kaveriksi
+  * tilastojen vertailu muiden kanssa  
+* moninpelimahdollisuus  
+* normaalin käyttäjän lisäksi käyttäjä, joka voi luoda uusia kysymyksiä käyttöliittymän kautta  
+* voi valita miltä aihealueelta haluaa kysymyksiä  
+* voi valita vaikeustason
+  * jokaisesta tasosta suoritusmerkintä tilille
+* eri pelimuotoja, esim. oikean vastauksen pisteet riippuvat kuinka nopeasti ratkaistu
