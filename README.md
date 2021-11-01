@@ -1,5 +1,5 @@
 # Ohjelmistotekniikka, harjoitystyö
-toinen muutos
+
 ### Tehtävät
 ***
 ### Viikko 1
