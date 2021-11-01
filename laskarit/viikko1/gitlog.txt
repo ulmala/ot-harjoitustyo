@@ -1,0 +1,114 @@
+(base) Olli-MacBook-Air:tiedostoja olliulmala$ git log --stat | cat
+commit 141348654adc2d1f0c7f692e5cf911b825ebc310
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 20:03:08 2021 +0200
+
+    poisto ja uudelleen nimeäminen
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a0d95f1c9c02650e1d071da5cc73af7a977e9ace
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:58:05 2021 +0200
+
+    tiedostojen lisäys
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1c7128a3a595ece50c5d58fc53898237f0d9c6fb
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:52:32 2021 +0200
+
+    lisäystä ja poistoa
+
+ eka.txt    | 3 +--
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+commit 86181afeb6f6e16034a9490ee33e0bf35f8ec166
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:50:28 2021 +0200
+
+    uusi nimi
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b7b6d077223538f7caf5b1ecce0d3e8a63d705ec
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:49:15 2021 +0200
+
+    toinen.txt poisto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 4c4e6fcc321fb8a3e2fdfdde02fc23f7e04e4080
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:44:10 2021 +0200
+
+    poisto ja lisäys
+
+ tiedosto.txt | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 80c17a2c48369530b96718a6b74b997f2402a041
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:41:57 2021 +0200
+
+    tekstin lisäys
+
+ tiedosto.txt | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit 43d4bfe1ac2d9d2326bae8668623158447fa5cab
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:39:26 2021 +0200
+
+    muutos toiseen ja kolmanteen
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 8470d95df0b7db85e496baf9a8ed1c914b42756a
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:28:39 2021 +0200
+
+    stuff lisäys
+
+ stuff/jokin_tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c401e16a695ecca03aed7daa59d63e6d35f7d718
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:27:31 2021 +0200
+
+    kolmannen tiedoston lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5ef256cf1ee97ca6aa9a1cc0614e3f723b393205
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:23:41 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 109c8806cc24b8efac97279fe615072b3968ae5d
+Author: Olli Ulmala <ulmala.olli@hotmail.com>
+Date:   Mon Nov 1 19:19:26 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
