@@ -15,14 +15,16 @@ Ainakin alkuun pelissä tulee olemaan vain yhden tasoisa käyttäjiä; normaalej
 - Pelin jälkeen julistetaan voittaja ja näkyy yhteenveto pisteistä
 
 ## Käyttöliittymäluonnos
+
 ### Aloitusnäkymä
-!["start view"](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/start.png?raw=true)
+<img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/start.png?raw=true" width="500">
 
 ### Pelinäkymä
-!["start view"](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/play.png?raw=true)
+
+<img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/play.png?raw=true" width="500">
 
 ### Loppunäkymä
-!["start view"](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/end.png?raw=true)
+<img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/end.png?raw=true" width="500">
 
 ## Jatkokehitysideoita
 - tuki N pelaajalle
