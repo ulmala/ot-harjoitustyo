@@ -1,23 +1,28 @@
 from entities.player import Player
 from entities.roll import Roll
-from services.game_service import GameService
+from services.game_service import game_service
 
 class UI:
     def start(self):
-        print('########### LETS PLAY YATHZEE! ###########')
-        name = input('Give name for player: ')
-        player = Player(name)
-        print(f'Welcome {player}!')
-        game_service = GameService()
+        print('lets play yahtzee')
+        print()
+        
+        # Pelin luominen
         while True:
-            roll = Roll()
-            for _ in range(3):
-                if all(roll.keep_dice):
-                    break
-                print('here are the dices ', roll.dices)
-                keep = input('which dices you want to keep? ')
-                roll.keep_dices(keep)
-                roll.roll_dices()
-            print(game_service.check_combination(roll.dices, 1))
-            if input == 'q':
+            choice = input('press x to start new game, q to exit: ')
+            if choice == 'q':
+                exit()
+            elif choice == 'x':
                 break
+            else:
+                continue
+    
+        # Pelaajien lisääminen
+        while True:
+            name = input('give name for player (q to quit adding): ')
+            if name == 'q': break
+            if not game_service.add_player(Player(name)):
+                print('max players achieved!')
+                break
+        # Pelaaminen alkaa --> loopataan dataframe läpi
+        game_service.start_game()

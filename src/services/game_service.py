@@ -1,58 +1,33 @@
-from entities.game import Game
+from entities.game import game
+from services.roll_service import roll_service
 
 class GameService:
 
-    def check_combination(self, dices, n):
-        return dices.count(n) * n
+    def add_player(self, player):
+        if len(game.players) < game.max_players:
+            game.players.append(player)
+            game.scoreboard[player.name] = '-'
+            return True
+        return False
 
-    def check_three_of_a_kind(self, dices):
-        dices.sort()
-        if dices[:3].count(dices[0]) == 3:
-            return sum(dices[:3])
-        elif dices[1:4].count(dices[1]) == 3:
-            return sum(dices[1:4])
-        elif dices[2:5].count(dices[2]) == 3:
-            return sum(dices[2:5])
-        return 0
+    def start_game(self):
+        for idx in game.scoreboard.index:
+            for player in game.scoreboard.columns:
+                points = roll_service.execute_roll(idx)
+                game.scoreboard.at[idx, player] = points
+                self.print_status()
+        self.declare_winner()
 
-    def check_four_of_a_kind(self, dices):
-        dices.sort()
-        if dices[:4].count(dices[0]) == 4:
-            return sum(dices[:4])
-        elif dices[1:5].count(dices[1]) == 4:
-            return sum(dices[1:5])
-        return 0
+    def declare_winner(self):
+        game.scoreboard = game.scoreboard.astype(int)
+        winner = game.scoreboard.sum().idxmax()
+        points = game.scoreboard.sum().max()
+        print(f'WINNER IS {winner} with {points} points!')
 
-    def check_full_house(self, dices):
-        dices.sort()
-        if dices[0] == dices[1] == dices[2] and dices[3] == dices[4] and dices[0] != dices[4]:
-            return 25
-        elif dices[0] == dices[1] and dices[2] ==  dices[3] == dices[4] and dices[0] != dices[4]:
-            return 25
-        return 0
+    def print_status(self):
+        print()
+        print('##### CURRENT_STATUS #####')
+        print(game.scoreboard)
+        print()
 
-    def check_small_straight(self, dices):
-        dices.sort()
-        if all(x in dices for x in [1, 2, 3, 4]):
-            return 30
-        elif all(x in dices for x in [2, 3, 4, 5]):
-            return 30
-        elif all(x in dices for x in [3, 4, 5, 6]):
-            return 30
-        return 0
-
-    def check_large_straight(self, dices):
-        dices.sort()
-        if all(x in dices for x in [1, 2, 3, 4, 5]):
-            return 40
-        elif all(x in dices for x in [2, 3, 4, 5, 6]):
-            return 40
-        return 0
-
-    def check_yahtzee(self, dices):
-        if len(set(dices)) == 1:
-            return 50
-        return 0
-
-    def check_chance(self, dices):
-        return sum(dices)
+game_service = GameService()
