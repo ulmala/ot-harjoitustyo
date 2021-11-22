@@ -12,6 +12,10 @@ Ainakin alkuun pelissä tulee olemaan vain yhden tasoisa käyttäjiä; normaalej
 - Käyttäjät syöttävät pelikohtaiset nimimerkit
 - Peli noudattaa pääsääntöisesti näitä Yatzyn sääntöjä: https://en.wikipedia.org/wiki/Yahtzee#Rules
     - Poikkeuksena ensimmäisessä versiossa edetään pöytäkirjaa järjestyksessä rivi riviltä
+- Pelissä voi:
+    - Pelata pöytäkirjan "yläkerrassa" olevia rivejä
+    - Saada bonouspisteet "yläkerran" pelaamisen jälkeen
+    - Pelata pöytäkirjan alakerrassa olevia rivejä
 - Omalla vuorollaan pelaaja valitsee mitkä nopat haluaa pitää ja mitkä heittää uudestaan
 - Jokaisen vuoron jälkeen pelaajille näytetään päivitetty pistetilanne
 - Pelin lopuksi näytetään lopullinen pistetilanne
