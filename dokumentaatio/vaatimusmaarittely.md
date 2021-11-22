@@ -7,12 +7,16 @@ Sovellus on noppapeli Yatzyn digitaalinen versio. Sovelluksessa käyttäjä voi 
 Ainakin alkuun pelissä tulee olemaan vain yhden tasoisa käyttäjiä; normaaleja pelaajia. Sovellukseen ei kirjauduta erikseen sisään käyttäjätunnuksella.
 
 ## Perusversion tarjoama toiminnalisuus  
-- Kaksi käyttäjää voi pelata Yatzy peliä toisiaan vastaan
-    - Ei kirjautumista, syötetään pelikohtaiset nimimerkit
-- Peli näkymässä käyttäjät näkevät sen hetkisen pistetilanteen
-- Käyttäjä voi valita mitkä nopista haluaa heittää uudestaan
-- Peli noudattaa Yatzyn sääntöjä: https://en.wikipedia.org/wiki/Yahtzee#Rules
-- Pelin jälkeen julistetaan voittaja ja näkyy yhteenveto pisteistä
+
+- Kaksi käyttäjää voi aloittaa uuden pelin
+- Käyttäjät syöttävät pelikohtaiset nimimerkit
+- Peli noudattaa pääsääntöisesti näitä Yatzyn sääntöjä: https://en.wikipedia.org/wiki/Yahtzee#Rules
+    - Poikkeuksena ensimmäisessä versiossa edetään pöytäkirjaa järjestyksessä rivi riviltä
+- Omalla vuorollaan pelaaja valitsee mitkä nopat haluaa pitää ja mitkä heittää uudestaan
+- Jokaisen vuoron jälkeen pelaajille näytetään päivitetty pistetilanne
+- Pelin lopuksi näytetään lopullinen pistetilanne
+- Pelin lopuksi julistetaan voittaja
+- Pelillä on graafinen käyttöliittymä, jolla edellä mainitut toiminnallisuudet toteutetaan
 
 ## Käyttöliittymäluonnos
 
