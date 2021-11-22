@@ -1,4 +1,5 @@
 import random
+from entities import game
 from entities.roll import Roll
 
 class RollService:
@@ -9,8 +10,8 @@ class RollService:
             if all(roll.keep_dice):
                 break
             self.roll_dices(roll)
-            print('here are the dices: ', roll.dices)
-            dices_to_keep = input('which dices you want to keep?')
+            print('Tässä ovat nopat: ', roll.dices)
+            dices_to_keep = input('Mitkä nopat haluat pitää?')
             self.keep_dices(roll, dices_to_keep)
         points = self.check_points(roll, idx)
         return points

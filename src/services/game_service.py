@@ -13,21 +13,22 @@ class GameService:
     def start_game(self):
         for idx in game.scoreboard.index:
             for player in game.scoreboard.columns:
+                print('\n\n')
+                print('Pelaaja: ', player)
                 points = roll_service.execute_roll(idx)
                 game.scoreboard.at[idx, player] = points
-                self.print_status()
-        self.declare_winner()
+            self.print_status()
 
     def declare_winner(self):
+        self.print_status()
         game.scoreboard = game.scoreboard.astype(int)
         winner = game.scoreboard.sum().idxmax()
         points = game.scoreboard.sum().max()
-        print(f'WINNER IS {winner} with {points} points!')
-
+        return winner,points
+        
     def print_status(self):
-        print()
-        print('##### CURRENT_STATUS #####')
+        print('\n' * 50)
+        print('################# TILANNE #################')
         print(game.scoreboard)
-        print()
 
 game_service = GameService()
