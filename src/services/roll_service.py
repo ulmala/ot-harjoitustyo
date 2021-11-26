@@ -20,6 +20,7 @@ class RollService:
         for i in range(5):
             if not roll.keep_dice[i]:
                 roll.dices[i] = random.randint(1,6)
+        roll.keep_dices = [False] * 5
 
     def keep_dices(self, roll, dices_to_keep):
         if len(dices_to_keep) == 0:
