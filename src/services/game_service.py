@@ -29,10 +29,9 @@ class GameService:
                 points = roll_service.execute_rolls(turn_name)
             self.game.scoreboard.at[turn_name, player] = points
         self.game.current_turn += 1
-        return self.game.scoreboard        
+        return self.game.scoreboard
 
     def check_bonus(self, player):
-        print(self.game.scoreboard)
         if self.game.scoreboard[player][:6].sum() >= 63:
             return 50
         return 0

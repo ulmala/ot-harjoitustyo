@@ -1,5 +1,4 @@
 import random
-from entities import game
 from entities.roll import Roll
 
 class RollService:
@@ -31,16 +30,30 @@ class RollService:
     def check_points(self, roll, roll_name):
         if roll_name == 'Aces':
             return self.check_combination(roll.dices, 1)
-        elif roll_name == 'Twos':
+        if roll_name == 'Twos':
             return self.check_combination(roll.dices, 2)
-        elif roll_name == 'Threes':
+        if roll_name == 'Threes':
             return self.check_combination(roll.dices, 3)
-        elif roll_name == 'Fours':
+        if roll_name == 'Fours':
             return self.check_combination(roll.dices, 4)
-        elif roll_name == 'Fives':
+        if roll_name == 'Fives':
             return self.check_combination(roll.dices, 5)
-        elif roll_name == 'Sixes':
-            return self.check_combination(roll.dices, 6)    
+        if roll_name == 'Sixes':
+            return self.check_combination(roll.dices, 6)
+        if roll_name == 'Three of a kind':
+            return self.check_three_of_a_kind(roll.dices)
+        if roll_name == 'Four of a kind':
+            return self.check_four_of_a_kind(roll.dices)
+        if roll_name == 'Full house':
+            return self.check_full_house(roll.dices)
+        if roll_name == 'Small straight':
+            return self.check_small_straight(roll.dices)
+        if roll_name == 'Large straight':
+            return self.check_large_straight(roll.dices)
+        if roll_name == 'Yahtzee':
+            return self.check_yahtzee(roll.dices)
+        if roll_name == 'Chance':
+            return self.check_chance(roll.dices)
 
     def check_combination(self, dices, n):
         return dices.count(n) * n
@@ -49,9 +62,9 @@ class RollService:
         dices.sort()
         if dices[:3].count(dices[0]) == 3:
             return sum(dices[:3])
-        elif dices[1:4].count(dices[1]) == 3:
+        if dices[1:4].count(dices[1]) == 3:
             return sum(dices[1:4])
-        elif dices[2:5].count(dices[2]) == 3:
+        if dices[2:5].count(dices[2]) == 3:
             return sum(dices[2:5])
         return 0
 
@@ -59,7 +72,7 @@ class RollService:
         dices.sort()
         if dices[:4].count(dices[0]) == 4:
             return sum(dices[:4])
-        elif dices[1:5].count(dices[1]) == 4:
+        if dices[1:5].count(dices[1]) == 4:
             return sum(dices[1:5])
         return 0
 
@@ -67,7 +80,7 @@ class RollService:
         dices.sort()
         if dices[0] == dices[1] == dices[2] and dices[3] == dices[4] and dices[0] != dices[4]:
             return 25
-        elif dices[0] == dices[1] and dices[2] ==  dices[3] == dices[4] and dices[0] != dices[4]:
+        if dices[0] == dices[1] and dices[2] ==  dices[3] == dices[4] and dices[0] != dices[4]:
             return 25
         return 0
 
@@ -75,9 +88,9 @@ class RollService:
         dices.sort()
         if all(x in dices for x in [1, 2, 3, 4]):
             return 30
-        elif all(x in dices for x in [2, 3, 4, 5]):
+        if all(x in dices for x in [2, 3, 4, 5]):
             return 30
-        elif all(x in dices for x in [3, 4, 5, 6]):
+        if all(x in dices for x in [3, 4, 5, 6]):
             return 30
         return 0
 
@@ -85,7 +98,7 @@ class RollService:
         dices.sort()
         if all(x in dices for x in [1, 2, 3, 4, 5]):
             return 40
-        elif all(x in dices for x in [2, 3, 4, 5, 6]):
+        if all(x in dices for x in [2, 3, 4, 5, 6]):
             return 40
         return 0
 
