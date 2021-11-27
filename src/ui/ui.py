@@ -18,24 +18,24 @@ class UI:
                 break
             else:
                 continue
-                
-        print('\n' * 50)
+        print("\n\n")        
+
         # Pelaajien lisääminen
         while True:
             name = input('Syötä pelaajan nimi: ')
-            if name == 'q': break
+            if name == 'q':
+                break
             if not game_service.add_player(Player(name)):
                 print('Peli tukee vain kahta pelaajaa!')
                 break
-
-        # Pelaaminen alkaa
-        print('\n' * 50)
-        print('################# PELI ALKAA #################')
-        print('HUOM! kun kysytään mitkä nopat haluat pitää niin syötä niiden noppien\nlista indeksit mitkä haluat pitää ja erota ne pilkulla ","!')
-        input('Aloita peli painamalla Enter')
-        game_service.start_game()
+        print("\n\n")
+        
+        # Peli alkaa
+        while game_service.turns_left():
+            print(game_service.play_turn())
 
         # Voittajan julistus
+        print("\n\n")
+        print(game_service.get_status())
         winner, points = game_service.declare_winner()
-        print('\n' * 2)
         print(f'VOITTAJA ON PELAAJA: {winner}, PISTEILLÄ {points}')

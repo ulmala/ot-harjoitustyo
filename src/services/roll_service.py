@@ -4,7 +4,7 @@ from entities.roll import Roll
 
 class RollService:
 
-    def execute_roll(self, idx):
+    def execute_rolls(self, idx):
         roll = Roll()
         for _ in range(3):
             if all(roll.keep_dice):
