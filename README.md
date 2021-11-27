@@ -37,3 +37,9 @@ Ja testikattavuusraportti voidaan luoda (kansio /htmlcov) komennolla
 ```bash
 poetry run invoke coverage-report
 ```
+
+Pylint laatutarkistukset voidaan suorittaa komennolla
+
+```bash
+poetry run invoke lint
+```
