@@ -1,7 +1,7 @@
 import unittest
 from services.roll_service import RollService
 
-class TestGameService(unittest.TestCase):
+class TestRollService(unittest.TestCase):
     def setUp(self):
         self.roll_service = RollService()
         

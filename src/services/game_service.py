@@ -1,34 +1,52 @@
-from entities.game import game
+from entities.game import (
+    game as default_game
+)
 from services.roll_service import roll_service
 
+
 class GameService:
+    def __init__(self, game=default_game):
+        self.game = game
 
     def add_player(self, player):
-        if len(game.players) < game.max_players:
-            game.players.append(player)
-            game.scoreboard[player.name] = '-'
+        if len(self.game.players) < self.game.max_players:
+            self.game.players.append(player)
+            self.game.scoreboard[player.name] = '-'
             return True
         return False
 
-    def start_game(self):
-        for idx in game.scoreboard.index:
-            for player in game.scoreboard.columns:
-                print('\n\n')
-                print('Pelaaja: ', player)
-                points = roll_service.execute_roll(idx)
-                game.scoreboard.at[idx, player] = points
-            self.print_status()
+    def turns_left(self):
+        if self.game.current_turn < len(self.game.scoreboard.index):
+            return True
+        return False
+
+    def play_turn(self):
+        turn_name = self.game.scoreboard.index[self.game.current_turn]
+        for player in self.game.scoreboard.columns:
+            print('\nPelaajan ', player, ' vuoro')
+            if turn_name == 'Bonus':
+                points = self.check_bonus(player)
+            else:
+                points = roll_service.execute_rolls(turn_name)
+            self.game.scoreboard.at[turn_name, player] = points
+        self.game.current_turn += 1
+        return self.game.scoreboard
+
+    def check_bonus(self, player):
+        if self.game.scoreboard[player][:6].sum() >= 63:
+            return 50
+        return 0
 
     def declare_winner(self):
-        self.print_status()
-        game.scoreboard = game.scoreboard.astype(int)
-        winner = game.scoreboard.sum().idxmax()
-        points = game.scoreboard.sum().max()
-        return winner,points
-        
-    def print_status(self):
-        print('\n' * 50)
-        print('################# TILANNE #################')
-        print(game.scoreboard)
+        self.game.scoreboard = self.game.scoreboard.astype(int)
+        winner = self.game.scoreboard.sum().idxmax()
+        points = self.game.scoreboard.sum().max()
+        return winner, points
+
+    def get_status(self):
+        return self.game.scoreboard.to_string()
+
+    def get_players(self):
+        return self.game.players
 
 game_service = GameService()

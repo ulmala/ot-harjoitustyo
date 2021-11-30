@@ -8,6 +8,7 @@
 ## Dokumentaatio
 - [Vaatimusmäärittely](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)  
 - [Tuntikirjanpito](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)  
+- [Arkkitehtuuri](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)  
 
 
 ## Asennusohjeet
@@ -36,4 +37,10 @@ Ja testikattavuusraportti voidaan luoda (kansio /htmlcov) komennolla
 
 ```bash
 poetry run invoke coverage-report
+```
+
+Pylint laatutarkistukset voidaan suorittaa komennolla
+
+```bash
+poetry run invoke lint
 ```
