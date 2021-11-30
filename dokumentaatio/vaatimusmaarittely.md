@@ -21,7 +21,9 @@ Ainakin alkuun pelissä tulee olemaan vain yhden tasoisa käyttäjiä; normaalej
 - [x] Pelin lopuksi näytetään lopullinen pistetilanne
 - [x] Pelin lopuksi julistetaan voittaja
 - [ ] Pelillä on graafinen käyttöliittymä, jolla edellä mainitut toiminnallisuudet toteutetaan
-
+    - [ ] Aloitusnäkymä
+    - [ ] Pelinäkymä
+    - [ ] Loppunäkymä
 ## Käyttöliittymäluonnos
 
 ### Aloitusnäkymä
