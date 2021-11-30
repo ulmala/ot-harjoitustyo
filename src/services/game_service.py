@@ -23,6 +23,7 @@ class GameService:
     def play_turn(self):
         turn_name = self.game.scoreboard.index[self.game.current_turn]
         for player in self.game.scoreboard.columns:
+            print('\nPelaajan ', player, ' vuoro')
             if turn_name == 'Bonus':
                 points = self.check_bonus(player)
             else:

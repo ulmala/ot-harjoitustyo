@@ -8,19 +8,19 @@ Ainakin alkuun pelissä tulee olemaan vain yhden tasoisa käyttäjiä; normaalej
 
 ## Perusversion tarjoama toiminnalisuus  
 
-- Kaksi käyttäjää voi aloittaa uuden pelin
-- Käyttäjät syöttävät pelikohtaiset nimimerkit
+- [x] Kaksi käyttäjää voi aloittaa uuden pelin
+- [x] Käyttäjät syöttävät pelikohtaiset nimimerkit
 - Peli noudattaa pääsääntöisesti näitä Yatzyn sääntöjä: https://en.wikipedia.org/wiki/Yahtzee#Rules
-    - Poikkeuksena ensimmäisessä versiossa edetään pöytäkirjaa järjestyksessä rivi riviltä
+    - [x] Poikkeuksena ensimmäisessä versiossa edetään pöytäkirjaa järjestyksessä rivi riviltä
 - Pelissä voi:
-    - Pelata pöytäkirjan "yläkerrassa" olevia rivejä
-    - Saada bonouspisteet "yläkerran" pelaamisen jälkeen
-    - Pelata pöytäkirjan alakerrassa olevia rivejä
-- Omalla vuorollaan pelaaja valitsee mitkä nopat haluaa pitää ja mitkä heittää uudestaan
-- Jokaisen vuoron jälkeen pelaajille näytetään päivitetty pistetilanne
-- Pelin lopuksi näytetään lopullinen pistetilanne
-- Pelin lopuksi julistetaan voittaja
-- Pelillä on graafinen käyttöliittymä, jolla edellä mainitut toiminnallisuudet toteutetaan
+    - [x] Pelata pöytäkirjan "yläkerrassa" olevia rivejä
+    - [x] Saada bonouspisteet "yläkerran" pelaamisen jälkeen
+    - [x] Pelata pöytäkirjan alakerrassa olevia rivejä
+- [x] Omalla vuorollaan pelaaja valitsee mitkä nopat haluaa pitää ja mitkä heittää uudestaan
+- [x] Jokaisen vuoron jälkeen pelaajille näytetään päivitetty pistetilanne
+- [x] Pelin lopuksi näytetään lopullinen pistetilanne
+- [x] Pelin lopuksi julistetaan voittaja
+- [ ] Pelillä on graafinen käyttöliittymä, jolla edellä mainitut toiminnallisuudet toteutetaan
 
 ## Käyttöliittymäluonnos
 
@@ -35,6 +35,7 @@ Ainakin alkuun pelissä tulee olemaan vain yhden tasoisa käyttäjiä; normaalej
 <img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/end.png?raw=true" width="500">
 
 ## Jatkokehitysideoita
+- pelaaja voi valita mitä pöytäkirjan riviä heittää
 - tuki N pelaajalle
 - käyttäjien rekisteröiminen
 - mahdollisuus selata omaa pelihistoriaa ja tilastoja
