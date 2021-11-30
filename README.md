@@ -8,6 +8,7 @@
 ## Dokumentaatio
 - [Vaatimusmäärittely](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)  
 - [Tuntikirjanpito](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)  
+- [Arkkitehtuuri](https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)  
 
 
 ## Asennusohjeet
