@@ -29,6 +29,8 @@ class UI:
                 print('Peli tukee vain kahta pelaajaa!')
                 break
         print("\n\n")
+
+        print("Kun kysytään minkä nopan haluat pitää, syötä niiden noppien indeksit mitkä haluat pitää (eroteltuna pilkulla)")
         
         # Peli alkaa
         while game_service.turns_left():
