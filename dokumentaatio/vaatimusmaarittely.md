@@ -27,7 +27,12 @@ Huom! GUI merkintä tarkoittaa, että kyseinen toiminnalisuus toimii myös graaf
 - [x] Pelin lopuksi näytetään lopullinen pistetilanne
     - [ ] GUI
 - [x] Pelin lopuksi julistetaan voittaja
-
+- [ ] Pelillä on selkeä graafinen käyttöliittymä, jolla edellä mainitut toiminnallisuudet toteutetaan
+    - Graafisessa käyttöliittymässä kolme näkymää
+        - [x] Start
+        - [x] Game
+        - [x] End
+        - [ ] Ja siirtyminen näiden välillä toimii
 ## Käyttöliittymäluonnos
 
 ### Aloitusnäkymä
