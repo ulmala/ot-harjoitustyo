@@ -3,16 +3,17 @@ from entities.roll import Roll
 
 class RollService:
 
+    def __init__(self):
+        self.roll = None
+
     def execute_rolls(self, idx):
-        roll = Roll()
+        self.roll = Roll()
         for _ in range(3):
-            if all(roll.keep_dice):
+            if all(self.roll.keep_dice):
                 break
-            self.roll_dices(roll)
-            print('Tässä ovat nopat: ', roll.dices)
-            dices_to_keep = input('Mitkä nopat haluat pitää?')
-            self.keep_dices(roll, dices_to_keep)
-        points = self.check_points(roll, idx)
+            self.roll_dices(self.roll)
+            self.keep_dices(self.roll, '')
+        points = self.check_points(self.roll, idx)
         return points
 
     def roll_dices(self, roll):

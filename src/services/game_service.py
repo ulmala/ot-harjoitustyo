@@ -1,6 +1,7 @@
 from entities.game import (
     game as default_game
 )
+from entities.player import Player
 from services.roll_service import roll_service
 
 
@@ -8,7 +9,8 @@ class GameService:
     def __init__(self, game=default_game):
         self.game = game
 
-    def add_player(self, player):
+    def add_player(self, player_name):
+        player = Player(player_name)
         if len(self.game.players) < self.game.max_players:
             self.game.players.append(player)
             self.game.scoreboard[player.name] = '-'

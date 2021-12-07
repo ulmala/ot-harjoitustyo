@@ -1,45 +1,56 @@
-from entities import game
-from entities.player import Player
-from entities.roll import Roll
-from services.game_service import game_service
+from ui.start_view import StartView
+from ui.game_view import GameView
+from ui.end_view import EndView
 
 class UI:
+    def __init__(self, root):
+        self._root = root
+        self._current_view = None
+
     def start(self):
-        print('\n' * 50)
-        print('################# YATZY #################')
-        print()
-        
-        # Pelin luominen
-        while True:
-            choice = input('Syötä x jos haluat käynnistää uuden pelin\ntai syötä q jos haluat lopettaa: ')
-            if choice == 'q':
-                exit()
-            elif choice == 'x':
-                break
-            else:
-                continue
-        print("\n\n")        
+        self._show_start_view()
 
-        # Pelaajien lisääminen
-        while True:
-            name = input('Syötä pelaajan nimi: ')
-            if name == 'q':
-                break
-            if not game_service.add_player(Player(name)):
-                print('Peli tukee vain kahta pelaajaa!')
-                break
-        print("\n\n")
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
 
-        print("Kun kysytään minkä nopan haluat pitää, syötä niiden noppien indeksit mitkä haluat pitää (eroteltuna pilkulla)")
-        print("\n\n")
+        self._current_view = None
 
+    def _handle_start(self):
+        self._show_start_view()
 
-        # Peli alkaa
-        while game_service.turns_left():
-            print(game_service.play_turn())
+    def _handle_game(self):
+        self._show_game_view()
 
-        # Voittajan julistus
-        print("\n\n")
-        print(game_service.get_status())
-        winner, points = game_service.declare_winner()
-        print(f'VOITTAJA ON PELAAJA: {winner}, PISTEILLÄ {points}')
+    def _handle_end(self):
+        self._show_end_view()
+
+    def _show_start_view(self):
+        self._hide_current_view()
+
+        self._current_view = StartView(
+            self._root,
+            self._handle_game
+        )
+
+        self._current_view.pack()
+
+    def _show_game_view(self):
+        self._hide_current_view()
+
+        self._current_view = GameView(
+            self._root,
+            self._handle_end
+        )
+
+        self._current_view.pack()
+
+    def _show_end_view(self):
+        self._hide_current_view()
+
+        self._current_view = EndView(
+            self._root,
+            self._handle_start
+        )
+
+        self._current_view.pack()
