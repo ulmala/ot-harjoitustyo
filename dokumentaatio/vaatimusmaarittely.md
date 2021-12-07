@@ -16,14 +16,10 @@ Huom! GUI merkintä tarkoittaa, että kyseinen toiminnalisuus toimii myös graaf
     - [x] GUI
 - Peli noudattaa pääsääntöisesti näitä Yatzyn sääntöjä: https://en.wikipedia.org/wiki/Yahtzee#Rules
     - [x] Poikkeuksena ensimmäisessä versiossa edetään pöytäkirjaa järjestyksessä rivi riviltä
-        - [x] GUI
 - Pelissä voi:
     - [x] Pelata pöytäkirjan "yläkerrassa" olevia rivejä
-        - [x] GUI
     - [x] Saada bonouspisteet "yläkerran" pelaamisen jälkeen
-        - [x] GUI
     - [x] Pelata pöytäkirjan "alakerrassa" olevia rivejä
-        - [x] GUI
 - [x] Omalla vuorollaan pelaaja valitsee mitkä nopat haluaa pitää ja mitkä heittää uudestaan
     - [ ] GUI
 - [x] Jokaisen vuoron jälkeen pelaajille näytetään päivitetty pistetilanne
@@ -31,14 +27,6 @@ Huom! GUI merkintä tarkoittaa, että kyseinen toiminnalisuus toimii myös graaf
 - [x] Pelin lopuksi näytetään lopullinen pistetilanne
     - [ ] GUI
 - [x] Pelin lopuksi julistetaan voittaja
-    - [x] GUI
-- [ ] Pelillä on selkeä graafinen käyttöliittymä, jolla edellä mainitut toiminnallisuudet toteutetaan
-    - Graafisessa käyttöliittymässä kolme näkymää
-        - [x] Start
-        - [x] Game
-        - [x] End
-        - [ ] Ja siirtyminen näiden välillä toimii
-
 
 ## Käyttöliittymäluonnos
 
