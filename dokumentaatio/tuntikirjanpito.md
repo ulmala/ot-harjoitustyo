@@ -10,4 +10,6 @@
 | 1.12   | 1    | käyttöliittymän kehitys |
 | 2.12   | 3    | käyttöliittymän kehitys |
 | 7.12   | 4    | käyttöliittymän kehitys, sekvenssikaavion luonti |
-| TOTAL  | 25.5 | 
+| 13.12  | 2    | käyttöliittymän tulokseton kehitys |
+| 14.12  | 8    | käyttöliittymän kehitys tulokseton kehitys, docstringien lisäys, testien lisäys |
+| TOTAL  | 35.5 | 
