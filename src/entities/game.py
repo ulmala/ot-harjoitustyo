@@ -2,7 +2,18 @@ import pandas as pd
 
 
 class Game:
+    """Class which represents the Yahtzee game.
+
+    Attributes:
+        players: list of players in the game
+        max_players: maximum number of players allowed in the game
+        scoreboard: Yahtzee scoreboard represented as pandas dataframe
+        current_turn: integer which holds the information on which row
+                      (scoreboard) the game is currently on
+    """
     def __init__(self):
+        """Class constructor
+        """
         self.players = []
         self.max_players = 2
         index = ['Aces', 'Twos', 'Threes','Fours', 'Fives', 'Sixes', 'Bonus',

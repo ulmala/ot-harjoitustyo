@@ -72,3 +72,11 @@ class TestRollService(unittest.TestCase):
     def test_checking_chance_returns_correct_sum(self):
         dices = [1, 2, 3, 4, 5]
         self.assertEqual(self.roll_service.check_chance(dices), sum(dices))
+
+    def test_roll_dices_gives_random_numbers_to_dices(self):
+        self.roll_service.roll_dices(self.roll_service.roll)
+        self.assertNotEqual(self.roll_service.roll.dices, [None]*5)
+
+    def test_roll_dices_unkeeps_all_dices_in_the_end(self):
+        self.roll_service.roll_dices(self.roll_service.roll)
+        self.assertEqual(self.roll_service.roll.keep_dice, [False]*5)
