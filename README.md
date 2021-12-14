@@ -1,6 +1,6 @@
 # Yatzy
  Sovellus on Yatzy peli, jossa pelaajat voivat pelata Yatzya toisiaan vastaan.  
- Viimeisimmän version voi ladata [täältä](https://github.com/ulmala/ot-harjoitustyo/releases/tag/viikko6)
+ Viimeisimmän version voi ladata [täältä](https://github.com/ulmala/ot-harjoitustyo/releases/tag/viikko6)  
  Aikaisemmat releaset:
  - [Viikko 5](https://github.com/ulmala/ot-harjoitustyo/releases/tag/viikko5)
 
