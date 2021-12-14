@@ -39,17 +39,3 @@ class TestGameService(unittest.TestCase):
     def test_add_player_returns_true_when_player_added(self):
         player = Player('player_1')
         self.assertTrue(self.game_service.add_player(player))
-
-    def test_get_players_returns_correct_players(self):
-        player_1, player_2 = Player('player_1'), Player('player_2')
-        self.game_service.add_player(player_1)
-        self.game_service.add_player(player_2)
-        self.assertEqual(self.game_service.get_players(), [player_1, player_2])
-
-    def test_declare_winner_returns_correct_winner(self):
-        player_1, player_2 = Player('player_1'), Player('player_2')
-        self.game_service.add_player(player_1)
-        self.game_service.add_player(player_2)
-        self.game.scoreboard[player_1] = [1] * len(self.game.scoreboard)
-        self.game.scoreboard[player_2] = [2] * len(self.game.scoreboard)
-        self.assertEqual(self.game_service.declare_winner(), (player_2, 28))
