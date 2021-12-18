@@ -8,8 +8,10 @@ class Roll:
     def __init__(self):
         """Class constructor
         """
-        self.dices = [None] * 5
+        self.dices = [':('] * 5
         self.keep_dice = [False] * 5
+        self.player_in_turn = 0
+        self.throws = 3
 
     def __str__(self):
         return str(self.dices)
