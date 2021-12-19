@@ -1,5 +1,6 @@
-from tkinter import ttk, constants, StringVar
+from tkinter import ttk, constants, StringVar, PhotoImage
 from services.game_service import game_service
+
 
 class GameView:
     def __init__(self, root, handle_end):
@@ -7,9 +8,9 @@ class GameView:
         self._handle_end = handle_end
         self._frame = None
 
-        self.dice_vars = []
-        self.dice_checkbuttons = []
-        self.scoreboard = None
+        self._dice_vars  = []
+        self._dice_checkbuttons = []
+        self._scoreboard = None
         self._initialize()
 
     def pack(self):
@@ -21,34 +22,39 @@ class GameView:
     def _initialize_scoreboard(self):
         columns = game_service.get_player_names()
         columns.insert(0, 'turn')
-        self.scoreboard = ttk.Treeview(master=self._frame,
+        self._scoreboard = ttk.Treeview(master=self._frame,
                                       height=len(game_service.game.scoreboard.index),
                                       columns=columns)
-        self.scoreboard.column('#0', width=0)
-        for col in self.scoreboard['columns']:
-            self.scoreboard.column(col, anchor='center', width=80)
-            self.scoreboard.heading(col, text=col,anchor='center')
+        self._scoreboard.column('#0', width=0)
+        for col in self._scoreboard['columns']:
+            self._scoreboard.column(col, anchor='center', width=100)
+            self._scoreboard.heading(col, text=col,anchor='center')
 
         for idx, row in game_service.game.scoreboard.iterrows():
             values = list(row.values)
             values.insert(0, idx)
-            self.scoreboard.insert(parent='',
+            tags = []
+            if idx == game_service.get_current_turn_name():
+                tags = ['active_row']
+            self._scoreboard.insert(parent='',
                                   index='end',
                                   iid=game_service.game.scoreboard.index.get_loc(idx),
-                                  values=values)
-        self.scoreboard.grid(row=0, column=0, columnspan=5)
+                                  values=values,
+                                  tags=tags)
+        self._scoreboard.tag_configure('active_row', background='orange')
+        self._scoreboard.grid(row=0, column=0, columnspan=5)
 
 
     def _initialize_dices(self):
         for i in range(5):
-            self.dice_vars.append(StringVar(value=game_service.dices[i]))
-            self.dice_checkbuttons.append(
+            self._dice_vars .append(StringVar(value=game_service.dices[i]))
+            self._dice_checkbuttons.append(
                 ttk.Checkbutton(
                     master=self._frame,
-                    textvariable=self.dice_vars[i]
+                    textvariable=self._dice_vars [i]
                     )
                 )
-            self.dice_checkbuttons[i].grid(row=2, column=i)
+            self._dice_checkbuttons[i].grid(row=2, column=i)
         self._deselect_dices()
 
     def _initialize_game_status_labels(self):
@@ -77,18 +83,18 @@ class GameView:
         )
         self.roll_dices_button.grid(row=3, column=0)
 
-    def _roll_dices(self):    
-        game_service.roll_dices([len(dice.state()) for dice in self.dice_checkbuttons])
+    def _roll_dices(self):
+        game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
         game_service.throws -= 1
 
         for i in range(5):
-            self.dice_vars[i].set(game_service.dices[i])
+            self._dice_vars [i].set(game_service.dices[i])
 
         self._update_game_status_labels()
 
         if game_service.throws == 0 or self._player_keeps_all_dices():
             self._hide_roll_button()
-        
+
     def _hide_roll_button(self):
         self.roll_dices_button = ttk.Button(
             master=self._frame,
@@ -98,6 +104,8 @@ class GameView:
         self.roll_dices_button.grid(row=3, column=0)
 
     def _proceed_to_next_turn(self):
+        if not game_service.turns_left():
+            self._handle_end()
         game_service.next_turn()
         self.roll_dices_button.grid_forget()
         self._update_game_status_labels()
@@ -115,8 +123,8 @@ class GameView:
         until it's state is unchecked.
         """
         for i in range(5):
-            while len(self.dice_checkbuttons[i].state()) != 0:
-                self.dice_checkbuttons[i].invoke()
+            while len(self._dice_checkbuttons[i].state()) != 0:
+                self._dice_checkbuttons[i].invoke()
 
     def _player_keeps_all_dices(self):
         """Checks if player has checked all dice checkbuttons (wants to keep all dices)
@@ -124,6 +132,6 @@ class GameView:
         Returns:
             bool: True if all checkbuttons are checked, else False
         """
-        if all(dice == 1 for dice in [len(dice.state()) for dice in self.dice_checkbuttons]):
+        if all(dice == 1 for dice in [len(dice.state()) for dice in self._dice_checkbuttons]):
             return True
         return False
