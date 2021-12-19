@@ -3,7 +3,7 @@ from entities.game import (
 )
 from entities.player import Player
 import random
-from services.roll_service import roll_service
+from services.point_checker import point_checker
 
 
 class GameService:
@@ -33,7 +33,7 @@ class GameService:
         return self.dices
 
     def next_turn(self):
-        points = roll_service.dispatcher[self.game.current_turn](self.dices)
+        points = point_checker.dispatcher[self.game.current_turn](self.dices)
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
         self.dices = ['X' for _ in range(5)]

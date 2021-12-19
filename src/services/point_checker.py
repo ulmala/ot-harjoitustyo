@@ -3,7 +3,7 @@ from entities.game import (
     game as default_game
 )
 
-class RollService:
+class PointChecker:
     def __init__(self, game=default_game):
         self.game = game
         self.dispatcher = []
@@ -74,4 +74,4 @@ class RollService:
     def check_chance(self, dices):
         return sum(dices)
 
-roll_service = RollService()
+point_checker = PointChecker()
