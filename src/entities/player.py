@@ -15,4 +15,6 @@ class Player:
     def __str__(self):
         return self.name
 
+    def __rpr__(self):
+        return self.name
 

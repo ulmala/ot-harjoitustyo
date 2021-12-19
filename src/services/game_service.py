@@ -9,7 +9,7 @@ from services.roll_service import roll_service
 class GameService:
     def __init__(self, game=default_game):
         self.game = game
-        self.dices = [':('] * 5
+        self.dices = ['X'] * 5
         self.throws = 3
         self.current_player = 0
 
@@ -37,7 +37,7 @@ class GameService:
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
         # 'Nollataan' nopat
-        self.dices = [random.randint(1,6) for _ in range(5)]
+        self.dices = ['X' for _ in range(5)]
         # Seuraavalle pelaajalle täydet heitot
         self.throws = 3
         # Jos pelattava vuoro loppuu niin siirrytään seuravaan ja aloitetaan
@@ -77,5 +77,8 @@ class GameService:
 
     def get_players(self):
         return self.game.players
+
+    def get_player_names(self):
+        return [player.name for player in self.game.players]
 
 game_service = GameService()
