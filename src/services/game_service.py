@@ -1,8 +1,8 @@
+import random
 from entities.game import (
     game as default_game
 )
 from entities.player import Player
-import random
 from services.point_checker import point_checker
 
 
@@ -68,7 +68,7 @@ class GameService:
         if self.game.scoreboard[player][:6].sum() >= 63:
             return 50
         return 0
-        
+
     def declare_winner(self):
         self.game.scoreboard = self.game.scoreboard.astype(int)
         winner = self.game.scoreboard.sum().idxmax()
