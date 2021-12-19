@@ -86,14 +86,14 @@ class GameView:
     def _roll_dices(self):
         game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
         game_service.throws -= 1
-
         for i in range(5):
             self._dice_vars [i].set(game_service.dices[i])
-
         self._update_game_status_labels()
 
         if game_service.throws == 0 or self._player_keeps_all_dices():
             self._hide_roll_button()
+            # Noppien X bugi johtuu siitä, ennen ensimmäistä heittoa nopat ovat näkyvissä
+            # ja silloin niiden arvo on 'X'. Tällöin on mahdollista valita noppa jonka arvo on X
 
     def _hide_roll_button(self):
         self.roll_dices_button = ttk.Button(

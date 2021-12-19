@@ -7,9 +7,9 @@ class PointChecker:
     def __init__(self, game=default_game):
         self.game = game
         self.dispatcher = []
-        for _ in range(6):
+        for i in range(1,7):
             self.dispatcher.append(partial(
-                self.check_combination, n=self.game.current_turn+1
+                self.check_combination, n=i
             ))
         self.dispatcher.append(self.check_three_of_a_kind)
         self.dispatcher.append(self.check_four_of_a_kind)
