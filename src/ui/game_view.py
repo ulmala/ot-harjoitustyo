@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, StringVar
+from tkinter import ttk, constants, StringVar, Checkbutton
 from services.game_service import game_service
 from services.roll_service import roll_service
 
@@ -40,6 +40,10 @@ class GameView:
                 )
             self.d[i].grid(row=2, column=i+1)
 
+        self._deselect_dices()
+
+
+
         self.roll_button = ttk.Button(
             master=self._frame,
             text="Roll dices",
@@ -70,7 +74,7 @@ class GameView:
     def _roll_dices(self):    
         rolled_dices = game_service.roll_dices([len(d.state()) for d in self.d])
         
-        game_service.throws -= 1 # pois käly logiikasta
+        game_service.throws -= 1 # pois käli logiikasta
 
         self.debug_var.set(rolled_dices)
         self.debug_var2.set([len(d.state()) for d in self.d])
@@ -79,19 +83,32 @@ class GameView:
             self.dice_vars[i].set(game_service.dices[i])
 
 
+        self._update_game_status_labels()
+
+        if game_service.throws == 0 or all(k == 1 for k in [len(d.state()) for d in self.d]):
+            self._hide_roll_button()
+        
+    def _hide_roll_button(self):
+        self.roll_button = ttk.Button(
+            master=self._frame,
+            text="Next turn",
+            command=self._proceed_to_next_turn
+        )
+        self.roll_button.grid(row=3, column=0)
+
+    def _proceed_to_next_turn(self):
+        game_service.next_turn()
+        self.roll_button.grid_forget()
+        self._update_game_status_labels()
+        self._deselect_dices()
+
+    def _update_game_status_labels(self):
         self.current_player_var.set(game_service.get_current_player())
         self.current_turn_var.set(game_service.get_current_turn_name())
         self.throws_left_var.set(f'{game_service.throws}/3')
         self.scoreboard_var.set(game_service.game.scoreboard)
-    
 
-
-    def _hide_roll_button(self):
-        print('lol')
-        self.roll_button.grid_forget()
-        self.start_turn_button = ttk.Button(
-            master=self._frame,
-            text="Next turn",
-            #command=self._roll_dices
-        )
-        self.start_turn_button.grid(row=3, column=0)
+    def _deselect_dices(self):
+        for i in range(5):
+            while len(self.d[i].state()) != 0:
+                self.d[i].invoke()

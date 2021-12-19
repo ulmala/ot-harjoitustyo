@@ -27,32 +27,28 @@ class GameService:
         return False
 
     def roll_dices(self, keep):
-        # Jos pelaaja haluaa lopettaa vuoronsa tai heitot loppuvat kesken
-        if all(k == 1 for k in keep) or self.throws == 0:
-            # Tarkastetaan mitkä pisteet pelaaja saa
-            points = roll_service.check_points(self.dices, self.get_current_turn_name())
-            self.game.scoreboard.at[self.get_current_turn_name(),
-                                    self.get_current_player()] = points
-            # 'Nollataan' nopat
-            self.dices = [random.randint(1,6) for _ in range(5)]
-            # Seuraavalle pelaajalle täydet heitot
-            self.throws = 3
-            # Jos pelattava vuoro loppuu niin siirrytään seuravaan ja aloitetaan
-            # taas pelilaudan ensimmäisestä pelaajasta
-            if self.turn_ends():
-                self.game.current_turn += 1
-                self.game.current_player = 0
-            # Jos pelattava vuoro ei lopu niin siirrytään seuraavaan pelaajaan
-            else:
-                self.game.current_player += 1
-            return True
-        # Jos pelaajan vuoro ei lopu niin heitetään nopat uudestaan
-        else:
-            for i in range(5):
-                if keep[i] == 0:
-                    self.dices[i] = random.randint(1,6)
+        for i in range(5):
+            if keep[i] == 0:
+                self.dices[i] = random.randint(1,6)
         return self.dices
 
+    def next_turn(self):
+        points = roll_service.check_points(self.dices, self.get_current_turn_name())
+        self.game.scoreboard.at[self.get_current_turn_name(),
+                                self.get_current_player()] = points
+        # 'Nollataan' nopat
+        self.dices = [random.randint(1,6) for _ in range(5)]
+        # Seuraavalle pelaajalle täydet heitot
+        self.throws = 3
+        # Jos pelattava vuoro loppuu niin siirrytään seuravaan ja aloitetaan
+        # taas pelilaudan ensimmäisestä pelaajasta
+        if self.turn_ends():
+            self.game.current_turn += 1
+            self.game.current_player = 0
+        # Jos pelattava vuoro ei lopu niin siirrytään seuraavaan pelaajaan
+        else:
+            self.game.current_player += 1
+        return True
 
     def turn_ends(self):
         if self.get_current_player() == self.game.scoreboard.columns[-1]:
