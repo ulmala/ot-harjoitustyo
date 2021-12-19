@@ -7,7 +7,6 @@ class GameView:
         self._handle_end = handle_end
         self._frame = None
 
-        self.scoreboard_var = None
         self.dice_vars = []
         self.dice_checkbuttons = []
         self.scoreboard = None
@@ -20,21 +19,24 @@ class GameView:
         self._frame.destroy()
 
     def _initialize_scoreboard(self):
-        self.scoreboard = ttk.Treeview(master=self._frame)
         columns = game_service.get_player_names()
         columns.insert(0, 'turn')
-        self.scoreboard['columns'] = columns
-        self.scoreboard.column('#0', width=0,  stretch='no')
+        self.scoreboard = ttk.Treeview(master=self._frame,
+                                      height=len(game_service.game.scoreboard.index),
+                                      columns=columns)
+        self.scoreboard.column('#0', width=0)
         for col in self.scoreboard['columns']:
-            self.scoreboard.column(col, anchor='center', width=180)
+            self.scoreboard.column(col, anchor='center', width=80)
             self.scoreboard.heading(col, text=col,anchor='center')
 
         for idx, row in game_service.game.scoreboard.iterrows():
             values = list(row.values)
             values.insert(0, idx)
-            self.scoreboard.insert('', index='end', iid=game_service.game.scoreboard.index.get_loc(idx),
-            values=values)
-        self.scoreboard.grid(row=9, column=0)
+            self.scoreboard.insert(parent='',
+                                  index='end',
+                                  iid=game_service.game.scoreboard.index.get_loc(idx),
+                                  values=values)
+        self.scoreboard.grid(row=0, column=0, columnspan=5)
 
 
     def _initialize_dices(self):
@@ -46,14 +48,10 @@ class GameView:
                     textvariable=self.dice_vars[i]
                     )
                 )
-            self.dice_checkbuttons[i].grid(row=2, column=i+1)
+            self.dice_checkbuttons[i].grid(row=2, column=i)
         self._deselect_dices()
 
     def _initialize_game_status_labels(self):
-        self.scoreboard_var = StringVar(value=game_service.game.scoreboard)
-        scoreboard = ttk.Label(master=self._frame, textvariable=self.scoreboard_var)
-        scoreboard.grid(row=0, column=0)
-
         self.current_turn_var = StringVar(value=game_service.get_current_turn_name())
         current_turn_label = ttk.Label(master=self._frame, textvariable=self.current_turn_var)
         current_turn_label.grid(row=6, column=0)
@@ -109,7 +107,6 @@ class GameView:
         self.current_player_var.set(game_service.get_current_player())
         self.current_turn_var.set(game_service.get_current_turn_name())
         self.throws_left_var.set(f'{game_service.throws}/3')
-        self.scoreboard_var.set(game_service.game.scoreboard)
         self._initialize_scoreboard()
 
 

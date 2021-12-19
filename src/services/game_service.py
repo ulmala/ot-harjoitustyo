@@ -36,19 +36,22 @@ class GameService:
         points = roll_service.check_points(self.dices, self.get_current_turn_name())
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
-        # 'Nollataan' nopat
         self.dices = ['X' for _ in range(5)]
-        # Seuraavalle pelaajalle täydet heitot
         self.throws = 3
-        # Jos pelattava vuoro loppuu niin siirrytään seuravaan ja aloitetaan
-        # taas pelilaudan ensimmäisestä pelaajasta
         if self.turn_ends():
             self.game.current_turn += 1
             self.game.current_player = 0
-        # Jos pelattava vuoro ei lopu niin siirrytään seuraavaan pelaajaan
+            if self.get_current_turn_name() == 'Bonus':
+                self.execute_bonus_round()
         else:
             self.game.current_player += 1
         return True
+
+    def execute_bonus_round(self):
+        for player in self.get_players():
+            points = self.check_bonus(player)
+            self.game.scoreboard.at['Bonus', player] = points
+        self.game.current_turn += 1
 
     def turn_ends(self):
         if self.get_current_player() == self.game.scoreboard.columns[-1]:
