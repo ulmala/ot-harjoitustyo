@@ -1,60 +1,23 @@
-import random
-from entities.roll import (
-    roll as default_roll
-)
+from functools import partial
 from entities.game import (
     game as default_game
 )
 
 class RollService:
-    def __init__(self, roll=default_roll, game=default_game):
-        self.roll = roll
+    def __init__(self, game=default_game):
         self.game = game
-
-    def roll_dices(self, keep):
-        if all(k == 1 for k in keep) or self.roll.throws == 0:
-            self.roll.dices = [':(']*5
-            self.roll.throws = 3
-        else:
-            for i in range(5):
-                if keep[i] == 0:
-                    self.roll.dices[i] = random.randint(1,6)
-        return self.roll.dices
-
-    def get_current_player(self):
-        return self.game.scoreboard.columns[self.roll.player_in_turn]
-
-    def turn_ends(self):
-        if self.get_current_player() == self.game.scoreboard.columns[-1]:
-            return True
-
-    def check_points(self, dices, turn_name):
-        if turn_name == 'Aces':
-            return self.check_combination(dices, 1)
-        if turn_name == 'Twos':
-            return self.check_combination(dices, 2)
-        if turn_name == 'Threes':
-            return self.check_combination(dices, 3)
-        if turn_name == 'Fours':
-            return self.check_combination(dices, 4)
-        if turn_name == 'Fives':
-            return self.check_combination(dices, 5)
-        if turn_name == 'Sixes':
-            return self.check_combination(dices, 6)
-        if turn_name == 'Three of a kind':
-            return self.check_three_of_a_kind(dices)
-        if turn_name == 'Four of a kind':
-            return self.check_four_of_a_kind(dices)
-        if turn_name == 'Full house':
-            return self.check_full_house(dices)
-        if turn_name == 'Small straight':
-            return self.check_small_straight(dices)
-        if turn_name == 'Large straight':
-            return self.check_large_straight(dices)
-        if turn_name == 'Yahtzee':
-            return self.check_yahtzee(dices)
-        if turn_name == 'Chance':
-            return self.check_chance(dices)
+        self.dispatcher = []
+        for _ in range(6):
+            self.dispatcher.append(partial(
+                self.check_combination, n=self.game.current_turn+1
+            ))
+        self.dispatcher.append(self.check_three_of_a_kind)
+        self.dispatcher.append(self.check_four_of_a_kind)
+        self.dispatcher.append(self.check_full_house)
+        self.dispatcher.append(self.check_small_straight)
+        self.dispatcher.append(self.check_large_straight)
+        self.dispatcher.append(self.check_yahtzee)
+        self.dispatcher.append(self.check_chance)
 
     def check_combination(self, dices, n):
         return dices.count(n) * n

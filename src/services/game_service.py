@@ -33,7 +33,7 @@ class GameService:
         return self.dices
 
     def next_turn(self):
-        points = roll_service.check_points(self.dices, self.get_current_turn_name())
+        points = roll_service.dispatcher[self.game.current_turn](self.dices)
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
         self.dices = ['X' for _ in range(5)]
