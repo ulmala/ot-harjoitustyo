@@ -75,9 +75,6 @@ class GameService:
         points = self.game.scoreboard.sum().max()
         return winner, points
 
-    def get_status(self):
-        return self.game.scoreboard.to_string()
-
     def get_players(self):
         return self.game.players
 
