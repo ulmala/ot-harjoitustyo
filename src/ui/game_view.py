@@ -15,7 +15,7 @@ class GameView:
         self._initialize()
 
     def pack(self):
-        self._frame.pack(fill=constants.X)
+        self._frame.pack()
 
     def destroy(self):
         self._frame.destroy()
@@ -47,6 +47,8 @@ class GameView:
 
 
     def _initialize_dices(self):
+        dices_header = ttk.Label(master=self._frame, text='Dices')
+        dices_header.grid(column=0, row=1, columnspan=5)
         for i in range(5):
             self._dice_vars .append(StringVar(value=game_service.get_dices()[i]))
             self._dice_checkbuttons.append(
@@ -59,17 +61,17 @@ class GameView:
         self._deselect_dices()
 
     def _initialize_game_status_labels(self):
-        self.current_turn_var = StringVar(value=game_service.get_current_turn_name())
-        current_turn_label = ttk.Label(master=self._frame, textvariable=self.current_turn_var)
-        current_turn_label.grid(row=6, column=0)
+        self._current_player_var = StringVar(
+            value=f'Player in turn: {game_service.get_current_player()}'
+        )
+        current_player_label = ttk.Label(master=self._frame, textvariable=self._current_player_var)
+        current_player_label.grid(column=0, row=4, columnspan=5)
 
-        self.current_player_var = StringVar(value=game_service.get_current_player())
-        current_player_label = ttk.Label(master=self._frame, textvariable=self.current_player_var)
-        current_player_label.grid(row=7, column=0)
-
-        self.throws_left_var = StringVar(value=f'{game_service.get_throws_left()}/3')
-        throws_left_label = ttk.Label(master=self._frame, textvariable=self.throws_left_var)
-        throws_left_label.grid(row=8, column=0)
+        self._throws_left_var = StringVar(
+            value=f'Throws left: {game_service.get_throws_left()}/3'
+        )
+        throws_left_label = ttk.Label(master=self._frame, textvariable=self._throws_left_var)
+        throws_left_label.grid(row=5, column=0, columnspan=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -82,14 +84,10 @@ class GameView:
             text="Roll dices",
             command=self._roll_dices
         )
-        self.roll_dices_button.grid(row=3, column=0)
-
-        self.debug_var = StringVar(value=(game_service.get_current_turn(), game_service.get_current_turn_name()))
-        debug_label = ttk.Label(master=self._frame, textvariable=self.debug_var)
-        debug_label.grid(row=9, column=0)
+        self.roll_dices_button.grid(row=3, column=0, columnspan=5)
 
     def _roll_dices(self):
-        self._set_dice_checkbutton_state('normal')
+        self._set_dice_checkbutton_state(constants.NORMAL)
         game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
         game_service.game.throws -= 1
         self._update_dice_vars()
@@ -109,7 +107,7 @@ class GameView:
             text="Next turn",
             command=self._proceed_to_next_turn
         )
-        self.roll_dices_button.grid(row=3, column=0)
+        self.roll_dices_button.grid(row=3, column=0, columnspan=5)
 
     def _proceed_to_next_turn(self):
         game_ends = game_service.new_turn()
@@ -126,10 +124,8 @@ class GameView:
             dice_checkbutton.config(state=state)
     
     def _update_game_status_labels(self):
-        self.current_player_var.set(game_service.get_current_player())
-        self.current_turn_var.set(game_service.get_current_turn_name())
-        self.throws_left_var.set(f'{game_service.get_throws_left()}/3')
-        self.debug_var.set((game_service.get_current_turn(), game_service.get_current_turn_name()))
+        self._current_player_var.set(f'Player in turn: {game_service.get_current_player()}')
+        self._throws_left_var.set(f'Throws left: {game_service.get_throws_left()}/3')
         self._initialize_scoreboard()
 
 

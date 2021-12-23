@@ -15,7 +15,7 @@ class StartView:
         self._initialize()
 
     def pack(self):
-        self._frame.pack(fill=constants.X)
+        self._frame.pack()
 
     def destroy(self):
         self._frame.destroy()
@@ -29,7 +29,7 @@ class StartView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         header_label = ttk.Label(master=self._frame, text='Yahtzee')
-        header_label.grid(row=0, column=1, columnspan=2)
+        header_label.grid(row=0, column=0)
 
         self._initialize_player_entries()
         start_button = ttk.Button(
@@ -37,10 +37,10 @@ class StartView:
             command=self._start_game_handler
         )
 
-        start_button.grid(row=self._player_entires[-1].grid_info()['row'] + 1 , column=1, columnspan=2)
+        start_button.grid(row=self._player_entires[-1].grid_info()['row'] + 1 , column=0)
 
         label = ttk.Label(self._frame, text='\n\nAll time top 5 scores')
-        label.grid(row=self._player_entires[-1].grid_info()['row'] + 2, column=1, columnspan=2)
+        label.grid(row=self._player_entires[-1].grid_info()['row'] + 2, column=0)
 
         self._initialize_top_scoreboard()
 
@@ -48,8 +48,8 @@ class StartView:
         for i in range(game_service.game.max_players):
             player_label = ttk.Label(master=self._frame, text=f'Player {i+1}')
             self._player_entires.append(ttk.Entry(master=self._frame))
-            player_label.grid(row=(i+1) * 2 - 1, column=1)
-            self._player_entires[-1].grid(row=(i+1)*2, column=1)
+            player_label.grid(row=(i+1) * 2 - 1, column=0)
+            self._player_entires[-1].grid(row=(i+1)*2, column=0)
 
     def _initialize_top_scoreboard(self):
         self._top_scores = ttk.Treeview(master=self._frame,
@@ -65,4 +65,4 @@ class StartView:
                                     index='end',
                                     iid=i,
                                     values=(row[0], row[1]))
-        self._top_scores.grid(row=self._player_entires[-1].grid_info()['row'] + 3, column=1, columnspan=2)
+        self._top_scores.grid(row=self._player_entires[-1].grid_info()['row'] + 3, column=0)
