@@ -1,14 +1,11 @@
 import random
-from entities.game import (
-    game as default_game
-)
 from entities.player import Player
-from services.point_checker import point_checker
 from entities.game import Game
+from services.point_checker import point_checker
 
 class GameService:
     """Class which is handles game related functions
-    
+
     Attributes:
         game: instance of Game class
 
@@ -175,6 +172,6 @@ class GameService:
             list: dices as list
         """
         return self.game.dices
-    
+
 
 game_service = GameService()

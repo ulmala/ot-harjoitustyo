@@ -16,7 +16,7 @@ class GameView:
 
     def pack(self):
         self._frame.pack(fill=constants.X)
-        
+
     def destroy(self):
         self._frame.destroy()
 
@@ -52,7 +52,7 @@ class GameView:
             self._dice_checkbuttons.append(
                 ttk.Checkbutton(
                     master=self._frame,
-                    textvariable=self._dice_vars [i]
+                    textvariable=self._dice_vars[i]
                     )
                 )
             self._dice_checkbuttons[i].grid(row=2, column=i)
@@ -89,6 +89,7 @@ class GameView:
         debug_label.grid(row=9, column=0)
 
     def _roll_dices(self):
+        self._set_dice_checkbutton_state('normal')
         game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
         game_service.game.throws -= 1
         self._update_dice_vars()
@@ -97,8 +98,6 @@ class GameView:
         if game_service.get_throws_left() == 0 or self._player_keeps_all_dices():
             game_service.update_points()
             self._hide_roll_button()
-            # Noppien X bugi johtuu siitä, ennen ensimmäistä heittoa nopat ovat näkyvissä
-            # ja silloin niiden arvo on 'X'. Tällöin on mahdollista valita noppa jonka arvo on X
 
     def _update_dice_vars(self):
         for i in range(5):
@@ -120,7 +119,12 @@ class GameView:
             self.roll_dices_button.grid_forget()
             self._update_game_status_labels()
             self._deselect_dices()
+            self._set_dice_checkbutton_state(constants.DISABLED)
 
+    def _set_dice_checkbutton_state(self, state):
+        for dice_checkbutton in self._dice_checkbuttons:
+            dice_checkbutton.config(state=state)
+    
     def _update_game_status_labels(self):
         self.current_player_var.set(game_service.get_current_player())
         self.current_turn_var.set(game_service.get_current_turn_name())
