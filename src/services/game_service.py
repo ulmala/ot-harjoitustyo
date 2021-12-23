@@ -175,5 +175,6 @@ class GameService:
             list: dices as list
         """
         return self.game.dices
+    
 
 game_service = GameService()
