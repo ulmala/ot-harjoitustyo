@@ -4,7 +4,7 @@ import pandas as pd
 class FakeGame():
     def __init__(self):
         self.players = []
-        self.max_players = 2
+        self.max_players = 4
         index = ['Aces', 'Twos', 'Threes','Fours', 'Fives', 'Sixes', 'Bonus',
                  'Three of a kind', 'Four of a kind', 'Full house', 'Small straight',
                  'Large straight', 'Yahtzee', 'Chance']

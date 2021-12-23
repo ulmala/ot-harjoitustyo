@@ -36,7 +36,7 @@ class TestGameService(unittest.TestCase):
             self.assertEqual((dices[0], dices[-1]), (self.game_service.game.dices[0], self.game_service.game.dices[-1]))
 
     def test_turn_ends_returns_true_when_current_turn_ends(self):
-        self.game_service.game.current_player = self.game_service.game.max_players - 1
+        self.game_service.game.current_player = len(self.game_service.get_players()) - 1
         self.assertTrue(self.game_service.turn_ends())
     
     def test_turn_ends_returns_false_if_all_players_not_played_current_turn(self):
@@ -89,3 +89,32 @@ class TestGameService(unittest.TestCase):
         self.game_service.add_player(player_1)
         self.game_service.add_player(player_2)
         self.assertFalse(self.game_service.add_player('player'))
+
+    def test_game_ends_returns_true_when_last_player_has_played_last_round(self):
+        self.game_service.game.current_player = len(self.game_service.get_players()) - 1
+        self.game_service.game.current_turn = 14
+        for col in self.game_service.game.scoreboard:
+            self.game_service.game.scoreboard[col] = list(range(14))
+        self.assertTrue(self.game_service.game_ends())
+
+    def test_new_turn_returns_false_when_game_ends(self):
+        self.game_service.game.current_player = len(self.game_service.get_players()) - 1
+        self.game_service.game.current_turn = 14
+        for col in self.game_service.game.scoreboard:
+            self.game_service.game.scoreboard[col] = list(range(14))
+        self.assertFalse(self.game_service.new_turn())
+
+    def test_new_turn_gives_the_turn_to_next_player(self):
+        player_in_turn_before = self.game_service.get_current_player()
+        self.game_service.new_turn()
+        self.assertNotEqual(self.game_service.get_current_player(), player_in_turn_before)
+
+    def test_get_dices_returns_correct_dices(self):
+        self.game_service.roll_dices(keep=[0,0,0,0,0])
+        dices = self.game_service.game.dices
+        self.assertEqual(self.game_service.get_dices(), dices)
+
+    def test_get_throws_returns_correct_number_of_trhows(self):
+        self.assertEqual(self.game_service.get_throws_left(), 3)
+        self.game_service.game.throws -= 2
+        self.assertEqual(self.game_service.get_throws_left(), 1)
