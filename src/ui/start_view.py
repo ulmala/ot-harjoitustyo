@@ -19,6 +19,7 @@ class StartView:
         self._frame.destroy()
 
     def _start_game_handler(self):
+        game_service.game = Game()
         if len(self._player1_entry.get()) > 0:
             player1_name = self._player1_entry.get()
             game_service.add_player(player1_name)

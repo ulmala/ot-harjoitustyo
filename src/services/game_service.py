@@ -4,7 +4,7 @@ from entities.game import (
 )
 from entities.player import Player
 from services.point_checker import point_checker
-
+from entities.game import Game
 
 class GameService:
     """Class which is handles game related functions
@@ -15,12 +15,12 @@ class GameService:
         LISÄÄ MUUT
 
     """
-    def __init__(self, game=default_game):
+    def __init__(self):
         """Class consturctor
         Args:
             game (Game, optional): instance of class Game. Defaults to default_game.
         """
-        self.game = game
+        self.game = Game()
 
     def add_player(self, player_name):
         """Function adds players to the game. Creates instance of Player class
