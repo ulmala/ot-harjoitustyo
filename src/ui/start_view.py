@@ -4,6 +4,7 @@ from entities.player import Player
 from entities.game import Game
 from services.game_service import game_service
 
+
 class StartView:
     def __init__(self, root, handle_game):
         self._root = root
@@ -28,8 +29,8 @@ class StartView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        header_label = ttk.Label(master=self._frame, text='Yahtzee')
-        header_label.grid(row=0, column=0)
+        header_label = ttk.Label(master=self._frame, text='Yahtzee', font=('TkDefaultFont', 30))
+        header_label.grid(row=0, column=0, pady=(0,25))
 
         self._initialize_player_entries()
         start_button = ttk.Button(
@@ -39,8 +40,8 @@ class StartView:
 
         start_button.grid(row=self._player_entires[-1].grid_info()['row'] + 1 , column=0)
 
-        label = ttk.Label(self._frame, text='\n\nAll time top 5 scores')
-        label.grid(row=self._player_entires[-1].grid_info()['row'] + 2, column=0)
+        label = ttk.Label(self._frame, text='All time top 5 scores')
+        label.grid(row=self._player_entires[-1].grid_info()['row'] + 2, column=0, pady=(25,0))
 
         self._initialize_top_scoreboard()
 

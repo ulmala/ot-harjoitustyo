@@ -1,5 +1,6 @@
-from tkinter import ttk, constants, StringVar, PhotoImage
+from tkinter import ttk, constants, StringVar
 from services.game_service import game_service
+from ui.scoreboard import Scoreboard
 
 
 class GameView:
@@ -20,35 +21,9 @@ class GameView:
     def destroy(self):
         self._frame.destroy()
 
-    def _initialize_scoreboard(self):
-        columns = game_service.get_player_names()
-        columns.insert(0, 'turn')
-        self._scoreboard = ttk.Treeview(master=self._frame,
-                                      height=len(game_service.game.scoreboard.index),
-                                      columns=columns)
-        self._scoreboard.column('#0', width=0)
-        for col in self._scoreboard['columns']:
-            self._scoreboard.column(col, anchor='center', width=40 + len(game_service.get_players())*15)
-            self._scoreboard.heading(col, text=col,anchor='center')
-
-        for idx, row in game_service.game.scoreboard.iterrows():
-            values = list(row.values)
-            values.insert(0, idx)
-            tags = []
-            if idx == game_service.get_current_turn_name():
-                tags = ['active_row']
-            self._scoreboard.insert(parent='',
-                                  index='end',
-                                  iid=game_service.game.scoreboard.index.get_loc(idx),
-                                  values=values,
-                                  tags=tags)
-        self._scoreboard.tag_configure('active_row', background='orange')
-        self._scoreboard.grid(row=0, column=0, columnspan=5)
-
-
     def _initialize_dices(self):
-        dices_header = ttk.Label(master=self._frame, text='Dices')
-        dices_header.grid(column=0, row=1, columnspan=5)
+        dices_header = ttk.Label(master=self._frame, text='Dices', font=('TkDefaultFont', 18))
+        dices_header.grid(column=0, row=1, columnspan=5, pady=(10,10))
         for i in range(5):
             self._dice_vars .append(StringVar(value=game_service.get_dices()[i]))
             self._dice_checkbuttons.append(
@@ -75,16 +50,19 @@ class GameView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+
+        self.scoreboard = Scoreboard(self._frame, row=0, column=0, columnspan=5)
+        self.scoreboard.initialize()
+
         self._initialize_game_status_labels()
         self._initialize_dices()
-        self._initialize_scoreboard()
         
         self.roll_dices_button = ttk.Button(
             master=self._frame,
             text="Roll dices",
             command=self._roll_dices
         )
-        self.roll_dices_button.grid(row=3, column=0, columnspan=5)
+        self.roll_dices_button.grid(row=3, column=0, columnspan=5, pady=(25,0))
 
     def _roll_dices(self):
         self._set_dice_checkbutton_state(constants.NORMAL)
@@ -106,7 +84,7 @@ class GameView:
             text="Next turn",
             command=self._proceed_to_next_turn
         )
-        self.roll_dices_button.grid(row=3, column=0, columnspan=5)
+        self.roll_dices_button.grid(row=3, column=0, columnspan=5, pady=(25,0))
 
     def _proceed_to_next_turn(self):
         game_ends = game_service.new_turn()
@@ -125,8 +103,7 @@ class GameView:
     def _update_game_status_labels(self):
         self._current_player_var.set(f'Player in turn: {game_service.get_current_player()}')
         self._throws_left_var.set(f'Throws left: {game_service.get_throws_left()}/3')
-        self._initialize_scoreboard()
-
+        self.scoreboard.initialize()
 
     def _deselect_dices(self):
         """Loops through all dice checkbuttons and invokes the checkbutton 
