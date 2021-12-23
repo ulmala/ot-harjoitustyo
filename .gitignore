@@ -4,4 +4,6 @@ __MACOSX
 htmlcov
 __pycache__
 .vscode
+
 data/database.sqlite
+data
