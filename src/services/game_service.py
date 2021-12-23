@@ -66,10 +66,14 @@ class GameService:
                 self.dices[i] = random.randint(1,6)
         return self.dices
 
-    def next_turn(self):
+    def update_points(self):
         points = point_checker.dispatcher[self.game.current_turn](self.dices)
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
+
+    def new_turn(self):
+        if self.game_ends():
+            return False
         self.dices = ['X' for _ in range(5)]
         self.throws = 3
         if self.turn_ends():
@@ -79,7 +83,7 @@ class GameService:
                 self.execute_bonus_round()
         else:
             self.game.current_player += 1
-        return self.game_ends()
+        return True
 
     def execute_bonus_round(self):
         """Executes the bonus round. This will be executed automatically when

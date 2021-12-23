@@ -95,6 +95,7 @@ class GameView:
         self._update_game_status_labels()
 
         if game_service.throws == 0 or self._player_keeps_all_dices():
+            game_service.update_points()
             self._hide_roll_button()
             # Noppien X bugi johtuu siitä, ennen ensimmäistä heittoa nopat ovat näkyvissä
             # ja silloin niiden arvo on 'X'. Tällöin on mahdollista valita noppa jonka arvo on X
@@ -112,12 +113,13 @@ class GameView:
         self.roll_dices_button.grid(row=3, column=0)
 
     def _proceed_to_next_turn(self):
-        game_ends = game_service.next_turn()
-        if game_ends:
+        game_ends = game_service.new_turn()
+        if not game_ends:
             self._handle_end()
-        self.roll_dices_button.grid_forget()
-        self._update_game_status_labels()
-        self._deselect_dices()
+        else:
+            self.roll_dices_button.grid_forget()
+            self._update_game_status_labels()
+            self._deselect_dices()
 
     def _update_game_status_labels(self):
         self.current_player_var.set(game_service.get_current_player())
