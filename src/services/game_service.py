@@ -87,7 +87,6 @@ class GameService:
         are allowed to have bonus points. Updates the scoreboard.
         """
         for player in self.get_players():
-            #points = self.check_bonus(player)
             points = point_checker.dispatcher[self.game.current_turn](player, self.game.scoreboard)
             self.game.scoreboard.at['Bonus', player] = points
         self.game.current_turn += 1
@@ -126,20 +125,6 @@ class GameService:
             int: number of current turn
         """
         return self.game.current_turn
-
-    #def check_bonus(self, player):
-    #    """Checks if the player is allowed to have bonus points, at least 63 points
-    #    from the first six rounds.
-    #
-    #    Args:
-    #        player ([type]): [description]
-    #    
-    #    Returns:
-    #        int: 50 if bonus is okay, else 0
-    #    """
-    #    if self.game.scoreboard[player][:6].sum() >= 63:
-    #        return 50
-    #    return 0
 
     def declare_winner(self):
         """Declares the winner of the game. Calculates the sum of all players
