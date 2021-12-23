@@ -184,5 +184,5 @@ class GameService:
         winner, points = self.declare_winner()
         self._game_repository.insert_game(self.game.scoreboard.to_csv(sep=';'), str(winner), int(points))
         self._game_repository.get_all_games()
-        print(self._game_repository.get_top_10_high_scores())
+        print(self._game_repository.get_top_5_high_scores())
 game_service = GameService()

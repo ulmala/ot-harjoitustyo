@@ -28,7 +28,7 @@ class GameView:
                                       columns=columns)
         self._scoreboard.column('#0', width=0)
         for col in self._scoreboard['columns']:
-            self._scoreboard.column(col, anchor='center', width=100)
+            self._scoreboard.column(col, anchor='center', width=40 + len(game_service.get_players())*15)
             self._scoreboard.heading(col, text=col,anchor='center')
 
         for idx, row in game_service.game.scoreboard.iterrows():

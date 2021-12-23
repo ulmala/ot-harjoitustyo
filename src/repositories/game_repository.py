@@ -20,10 +20,10 @@ class GameRepository:
         return id, scoreboard, winner, points
 
 
-    def get_top_10_high_scores(self):
+    def get_top_5_high_scores(self):
         cursor = self._connection.cursor()
         cursor.execute(
-            'select winner, points from games order by points desc limit 10'
+            'select winner, points from games order by points desc limit 5'
         )
         rows = cursor.fetchall()
         return [(row['winner'], row['points']) for row in rows]
