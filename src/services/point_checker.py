@@ -11,6 +11,7 @@ class PointChecker:
             self.dispatcher.append(partial(
                 self.check_combination, n=i
             ))
+        self.dispatcher.append(self.check_bonus)
         self.dispatcher.append(self.check_three_of_a_kind)
         self.dispatcher.append(self.check_four_of_a_kind)
         self.dispatcher.append(self.check_full_house)
@@ -21,6 +22,11 @@ class PointChecker:
 
     def check_combination(self, dices, n):
         return dices.count(n) * n
+
+    def check_bonus(self, player, scoreboard):
+        if scoreboard[player][:6].sum() >= 63:
+            return 50
+        return 0
 
     def check_three_of_a_kind(self, dices):
         dices.sort()
