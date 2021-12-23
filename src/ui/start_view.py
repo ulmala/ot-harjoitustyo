@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import Toplevel, ttk, constants
 
 from entities.player import Player
 from entities.game import Game
@@ -46,3 +46,12 @@ class StartView:
         player2_label.grid(row=1, column=2)
         self._player2_entry.grid(row=2, column=2)
         start_button.grid(row=3, column=1, columnspan=2)
+
+        show_rules_button = ttk.Button(master=self._frame, text='show rules', command=self._show_rules)
+        show_rules_button.grid(row=4, column=1, columnspan=2)
+
+    def _show_rules(self):
+        pop_up = Toplevel(self._frame)
+        pop_up.title('säännöt')
+        label = ttk.Label(self._frame, 'pelin säännöt')
+        label.pack()
