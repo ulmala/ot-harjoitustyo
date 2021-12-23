@@ -15,7 +15,7 @@ class GameService:
         LISÄÄ MUUT
 
     """
-    def __init__(self):
+    def __init__(self) -> None:
         """Class consturctor
         Args:
             game (Game, optional): instance of class Game. Defaults to default_game.
@@ -38,7 +38,7 @@ class GameService:
             return True
         return False
 
-    def turns_left(self):
+    def turns_left(self) -> bool:
         """Function which can be used to check if there is any turns left in the game
         (rows in the game scoreboard)
         Returns:
@@ -48,7 +48,7 @@ class GameService:
             return True
         return False
 
-    def roll_dices(self, keep):
+    def roll_dices(self, keep) -> list:
         """Function which rolls all dices (random number) user wants to reroll.
 
         Args:
@@ -68,7 +68,7 @@ class GameService:
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
 
-    def new_turn(self):
+    def new_turn(self) -> bool:
         if self.game_ends():
             return False
         self.game.dices = ['X' for _ in range(5)]
@@ -92,12 +92,12 @@ class GameService:
             self.game.scoreboard.at['Bonus', player] = points
         self.game.current_turn += 1
 
-    def game_ends(self):
+    def game_ends(self) -> bool:
         if self.turn_ends() and not self.turns_left():
             return True
         return False
 
-    def turn_ends(self):
+    def turn_ends(self) -> bool:
         """Checks if the turn/round ends. If the current player is the last one
         to play the turn, turn ends.
 
@@ -108,7 +108,7 @@ class GameService:
             return True
         return False
 
-    def get_current_player(self):
+    def get_current_player(self) -> Player:
         """Returns the the player whos turn it currently is in the game.
 
         Returns:
@@ -116,7 +116,7 @@ class GameService:
         """
         return self.game.scoreboard.columns[self.game.current_player]
 
-    def get_current_turn_name(self):
+    def get_current_turn_name(self) -> str:
         """Returns the name of current turn, e.g. 'Aces'
 
         Returns:
@@ -124,7 +124,7 @@ class GameService:
         """
         return self.game.scoreboard.index[self.game.current_turn]
 
-    def get_current_turn(self):
+    def get_current_turn(self) -> int:
         """Returns the number of current turn (index in the scoreboard)
 
         Returns:
@@ -132,7 +132,7 @@ class GameService:
         """
         return self.game.current_turn
 
-    def declare_winner(self):
+    def declare_winner(self) -> tuple:
         """Declares the winner of the game. Calculates the sum of all players
         points.
 
@@ -144,7 +144,7 @@ class GameService:
         points = self.game.scoreboard.sum().max()
         return winner, points
 
-    def get_players(self):
+    def get_players(self) -> list:
         """Returns the list of players in the game
 
         Returns:
@@ -152,7 +152,7 @@ class GameService:
         """
         return self.game.players
 
-    def get_player_names(self):
+    def get_player_names(self) -> list:
         """Returns list of player names
 
         Returns:
@@ -160,7 +160,7 @@ class GameService:
         """
         return [player.name for player in self.game.players]
 
-    def get_throws_left(self):
+    def get_throws_left(self) -> int:
         """Returns the amount of throws current player has left
 
         Returns:
@@ -168,7 +168,7 @@ class GameService:
         """
         return self.game.throws
 
-    def get_dices(self):
+    def get_dices(self) -> list:
         """Returns the dices.
 
         Returns:
