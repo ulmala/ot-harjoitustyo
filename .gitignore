@@ -6,4 +6,3 @@ __pycache__
 .vscode
 
 data/database.sqlite
-data
