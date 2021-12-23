@@ -66,14 +66,22 @@ class GameService:
         return self.game.dices
 
     def update_points(self):
+        """Updates current players points into the scoreboard. This function is called
+        when players turn ends
+        """
         points = point_checker.dispatcher[self.game.current_turn](self.game.dices)
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
 
     def new_turn(self) -> bool:
+        """This function is responsible for proceeding the game to the next round and changing
+        the player. If game does not have any turns left, will end the game.
+
+        Returns:
+            bool: returns True if proceeds to next round, else False
+        """
         if self.game_ends():
             return False
-        self.game.dices = ['X' for _ in range(5)]
         self.game.throws = 3
         if self.turn_ends():
             self.game.current_turn += 1
@@ -95,6 +103,12 @@ class GameService:
         self.game.current_turn += 1
 
     def game_ends(self) -> bool:
+        """Checks if the game has ended. If the current turn has ended (no players left)
+        and there are no furhter turns left means that the game has ended
+
+        Returns:
+            bool: True if game ended, else Fals
+        """
         if self.turn_ends() and not self.turns_left():
             self.save_winner()
             return True
