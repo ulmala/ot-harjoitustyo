@@ -21,9 +21,6 @@ class GameService:
             game (Game, optional): instance of class Game. Defaults to default_game.
         """
         self.game = game
-        self.dices = ['X'] * 5
-        self.throws = 3
-        self.current_player = 0
 
     def add_player(self, player_name):
         """Function adds players to the game. Creates instance of Player class
@@ -63,19 +60,19 @@ class GameService:
         """
         for i in range(5):
             if keep[i] == 0:
-                self.dices[i] = random.randint(1,6)
-        return self.dices
+                self.game.dices[i] = random.randint(1,6)
+        return self.game.dices
 
     def update_points(self):
-        points = point_checker.dispatcher[self.game.current_turn](self.dices)
+        points = point_checker.dispatcher[self.game.current_turn](self.game.dices)
         self.game.scoreboard.at[self.get_current_turn_name(),
                                 self.get_current_player()] = points
 
     def new_turn(self):
         if self.game_ends():
             return False
-        self.dices = ['X' for _ in range(5)]
-        self.throws = 3
+        self.game.dices = ['X' for _ in range(5)]
+        self.game.throws = 3
         if self.turn_ends():
             self.game.current_turn += 1
             self.game.current_player = 0
@@ -162,5 +159,21 @@ class GameService:
             list: list of player names
         """
         return [player.name for player in self.game.players]
+
+    def get_throws_left(self):
+        """Returns the amount of throws current player has left
+
+        Returns:
+            int: amount of throws
+        """
+        return self.game.throws
+
+    def get_dices(self):
+        """Returns the dices.
+
+        Returns:
+            list: dices as list
+        """
+        return self.game.dices
 
 game_service = GameService()

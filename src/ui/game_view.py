@@ -48,7 +48,7 @@ class GameView:
 
     def _initialize_dices(self):
         for i in range(5):
-            self._dice_vars .append(StringVar(value=game_service.dices[i]))
+            self._dice_vars .append(StringVar(value=game_service.get_dices()[i]))
             self._dice_checkbuttons.append(
                 ttk.Checkbutton(
                     master=self._frame,
@@ -67,7 +67,7 @@ class GameView:
         current_player_label = ttk.Label(master=self._frame, textvariable=self.current_player_var)
         current_player_label.grid(row=7, column=0)
 
-        self.throws_left_var = StringVar(value=f'{game_service.throws}/3')
+        self.throws_left_var = StringVar(value=f'{game_service.get_throws_left()}/3')
         throws_left_label = ttk.Label(master=self._frame, textvariable=self.throws_left_var)
         throws_left_label.grid(row=8, column=0)
 
@@ -90,11 +90,11 @@ class GameView:
 
     def _roll_dices(self):
         game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
-        game_service.throws -= 1
+        game_service.game.throws -= 1
         self._update_dice_vars()
         self._update_game_status_labels()
 
-        if game_service.throws == 0 or self._player_keeps_all_dices():
+        if game_service.get_throws_left() == 0 or self._player_keeps_all_dices():
             game_service.update_points()
             self._hide_roll_button()
             # Noppien X bugi johtuu siitä, ennen ensimmäistä heittoa nopat ovat näkyvissä
@@ -102,7 +102,7 @@ class GameView:
 
     def _update_dice_vars(self):
         for i in range(5):
-            self._dice_vars[i].set(game_service.dices[i])
+            self._dice_vars[i].set(game_service.get_dices()[i])
 
     def _hide_roll_button(self):
         self.roll_dices_button = ttk.Button(
@@ -124,7 +124,7 @@ class GameView:
     def _update_game_status_labels(self):
         self.current_player_var.set(game_service.get_current_player())
         self.current_turn_var.set(game_service.get_current_turn_name())
-        self.throws_left_var.set(f'{game_service.throws}/3')
+        self.throws_left_var.set(f'{game_service.get_throws_left()}/3')
         self.debug_var.set((game_service.get_current_turn(), game_service.get_current_turn_name()))
         self._initialize_scoreboard()
 

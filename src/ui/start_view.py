@@ -1,6 +1,7 @@
 from tkinter import ttk, constants
 
 from entities.player import Player
+from entities.game import Game
 from services.game_service import game_service
 
 class StartView:
