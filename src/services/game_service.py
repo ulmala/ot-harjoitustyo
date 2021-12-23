@@ -62,6 +62,7 @@ class GameService:
         for i in range(5):
             if keep[i] == 0:
                 self.game.dices[i] = random.randint(1,6)
+        self.game.throws -= 1
         return self.game.dices
 
     def update_points(self):

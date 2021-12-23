@@ -89,7 +89,6 @@ class GameView:
     def _roll_dices(self):
         self._set_dice_checkbutton_state(constants.NORMAL)
         game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
-        game_service.game.throws -= 1
         self._update_dice_vars()
         self._update_game_status_labels()
 
