@@ -109,7 +109,7 @@ class GameView:
         self.roll_dices_button.grid(row=3, column=0)
 
     def _proceed_to_next_turn(self):
-        if not game_service.turns_left():
+        if not game_service.turns_left() and game_service.turn_ends():
             self._handle_end()
         game_service.next_turn()
         self.roll_dices_button.grid_forget()
