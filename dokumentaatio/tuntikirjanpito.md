@@ -15,4 +15,5 @@
 | 18.12  | 6    | käyttöliittymän kehitys, koodin refaktorointi |
 | 19.12  | 10   | käyttöliittymän kehitys, koodin refaktorointi, pelilogiikan bugien korjaus |
 | 22.12  | 1    | koodin refaktorointi, docstringien päivitys |
-| TOTAL  | 52.5 | 
+| 23.12  | 7    | pelilogiikan ja käyttöliittymän viimeistelyä, tietokannan lisääminen |
+| TOTAL  | 59.5 | 

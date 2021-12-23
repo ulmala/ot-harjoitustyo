@@ -178,6 +178,8 @@ class GameService:
         """
         return self.game.dices
 
+
+    ### TÄMÄ PITÄÄ TEHDÄ LOPPUUN
     def save_winner(self):
         winner, points = self.declare_winner()
         self._game_repository.insert_game(self.game.scoreboard.to_csv(sep=';'), str(winner), int(points))
