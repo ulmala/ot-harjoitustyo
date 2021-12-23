@@ -2,6 +2,9 @@ import random
 from entities.player import Player
 from entities.game import Game
 from services.point_checker import point_checker
+from repositories.game_repository import (
+    game_repository as default_game_repository
+)
 
 class GameService:
     """Class which is handles game related functions
@@ -12,12 +15,13 @@ class GameService:
         LISÄÄ MUUT
 
     """
-    def __init__(self) -> None:
+    def __init__(self, game_repository=default_game_repository) -> None:
         """Class consturctor
         Args:
             game (Game, optional): instance of class Game. Defaults to default_game.
         """
         self.game = Game()
+        self._game_repository = game_repository
 
     def add_player(self, player_name):
         """Function adds players to the game. Creates instance of Player class
@@ -91,6 +95,7 @@ class GameService:
 
     def game_ends(self) -> bool:
         if self.turn_ends() and not self.turns_left():
+            self.save_winner()
             return True
         return False
 
@@ -173,5 +178,9 @@ class GameService:
         """
         return self.game.dices
 
-
+    def save_winner(self):
+        winner, points = self.declare_winner()
+        self._game_repository.insert_game(str(winner), int(points))
+        print(self._game_repository.get_all_games())
+        
 game_service = GameService()
