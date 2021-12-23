@@ -1,9 +1,16 @@
 import unittest
+from services.game_service import GameService
 from services.point_checker import PointChecker
+from tests.helpers.fake_game import FakeGame
+from entities.player import Player
 
 class TestPointChecker(unittest.TestCase):
     def setUp(self):
         self.point_checker = PointChecker()
+        self.game = FakeGame()
+        self.game_service = GameService()
+        self.game_service.add_player('player_1')
+        self.game_service.add_player('player_2')
         
     def test_checking_combination_returns_correct_sum(self):
         dices = [[3, 2, 4, 2, 1],
@@ -73,3 +80,12 @@ class TestPointChecker(unittest.TestCase):
         dices = [1, 2, 3, 4, 5]
         self.assertEqual(self.point_checker.check_chance(dices), sum(dices))
 
+    def test_check_bonus_returns_bonus_when_points_over_63(self):
+        player = self.game_service.get_players()[0]
+        self.game_service.game.scoreboard[player] = [3, 6, 9, 12, 15, 18, '-', '-', '-', '-', '-', '-', '-', '-']
+        self.assertEqual(self.point_checker.check_bonus(player, self.game_service.game.scoreboard), 50)
+
+    def test_check_bonus_does_not_return_bonuse_when_points_under_63(self):
+        player = self.game_service.get_players()[0]
+        self.game_service.game.scoreboard[player] = [3, 6, 9, 12, 15, 0, '-', '-', '-', '-', '-', '-', '-', '-']
+        self.assertEqual(self.point_checker.check_bonus(player, self.game_service.game.scoreboard), 0)      

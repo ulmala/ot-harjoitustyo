@@ -1,18 +1,8 @@
-import pandas as pd
 import unittest
 from services.game_service import GameService
 from entities.player import Player
+from tests.helpers.fake_game import FakeGame
 
-class FakeGame():
-    def __init__(self):
-        self.players = []
-        self.max_players = 2
-        index = ['Aces', 'Twos', 'Threes','Fours', 'Fives', 'Sixes', 'Bonus',
-                 'Three of a kind', 'Four of a kind', 'Full house', 'Small straight',
-                 'Large straight', 'Yahtzee', 'Chance']
-        self.scoreboard = pd.DataFrame(index=index, columns=self.players)
-        self.current_turn = 0
-        self.current_player = 0
 
 class TestGameService(unittest.TestCase):
     def setUp(self):
@@ -60,6 +50,7 @@ class TestGameService(unittest.TestCase):
             self.assertEqual(self.game_service.get_current_turn_name(), idx)
 
     def test_execute_bonus_round_updates_possible_bonus_points_into_scoreboard(self):
+        self.game_service.game.current_turn = 6
         self.game.scoreboard[self.game_service.get_players()[0]] = [3, 6, 9, 12, 15, 18, '-', '-', '-', '-', '-', '-', '-', '-']
         self.game.scoreboard[self.game_service.get_players()[1]] = [3, 6, 9, 12, 15, 0, '-', '-', '-', '-', '-', '-', '-', '-']
         self.game_service.execute_bonus_round()
@@ -93,16 +84,6 @@ class TestGameService(unittest.TestCase):
         self.game.current_player = 1
         self.game_service.next_turn()
         self.assertEqual(self.game.current_turn, 7)
-
-    def test_check_bonus_returns_bonus_when_points_over_63(self):
-        player = 'player_1'
-        self.game.scoreboard[player] = [3, 6, 9, 12, 15, 18, '-', '-', '-', '-', '-', '-', '-', '-']
-        self.assertEqual(self.game_service.check_bonus(player), 50)
-
-    def test_check_bonus_does_not_return_bonuse_when_points_under_63(self):
-        player = 'player_1'
-        self.game.scoreboard[player] = [3, 6, 9, 12, 15, 0, '-', '-', '-', '-', '-', '-', '-', '-']
-        self.assertEqual(self.game_service.check_bonus(player), 0)
 
     def test_add_player_returns_false_when_player_cant_be_added(self):
         player_1, player_2 = Player('player_1'), Player('player_2')
