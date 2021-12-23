@@ -12,5 +12,7 @@
 | 7.12   | 4    | käyttöliittymän kehitys, sekvenssikaavion luonti |
 | 13.12  | 2    | käyttöliittymän tulokseton kehitys |
 | 14.12  | 8    | käyttöliittymän kehitys tulokseton kehitys, docstringien lisäys, testien lisäys |
-| 17.12  | 6    | käyttöliittymän kehitys, koodin refaktorointi |
-| TOTAL  | 35.5 | 
+| 18.12  | 6    | käyttöliittymän kehitys, koodin refaktorointi |
+| 19.12  | 10   | käyttöliittymän kehitys, koodin refaktorointi, pelilogiikan bugien korjaus |
+| 22.12  | 1    | koodin refaktorointi, docstringien päivitys |
+| TOTAL  | 52.5 | 
