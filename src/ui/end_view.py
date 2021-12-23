@@ -4,7 +4,7 @@ from services.game_service import game_service
 class EndView:
     def __init__(self, root, handle_start):
         self._root = root
-        self.handle_start = handle_start
+        self._handle_start = handle_start
         self._frame = None
 
         self._initialize()
@@ -16,9 +16,9 @@ class EndView:
         self._frame.destroy()
 
     def _initialize(self):
-        self._frame = self._root
+        self._frame = ttk.Frame(master=self._root)
         header_label = ttk.Label(master=self._frame, text='game ended')
-        new_game_button = ttk.Button(master=self._frame, text='new game', command=self.handle_start)
+        new_game_button = ttk.Button(master=self._frame, text='new game', command=self._handle_start)
         winner, points = game_service.declare_winner()
         winner_label = ttk.Label(master=self._frame,
                                  text=f'Winner is {winner}, with {points} points!')

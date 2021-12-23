@@ -15,12 +15,12 @@ class UI:
             self._current_view.destroy()
 
         self._current_view = None
-
-    def _handle_start(self):
-        self._show_start_view()
-
-    def _handle_game(self):
+    
+    def _handle_game(self): # handle good bye
         self._show_game_view()
+
+    def _handle_start(self): # handle hello
+        self._show_start_view()
 
     def _handle_end(self):
         self._show_end_view()

@@ -26,7 +26,6 @@ class StartView:
             game_service.add_player(player2_name)
         self._handle_game()
 
-    
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         header_label = ttk.Label(master=self._frame, text='Yahtzee')

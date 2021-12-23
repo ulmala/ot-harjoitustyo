@@ -11,6 +11,7 @@ class GameView:
         self._dice_vars  = []
         self._dice_checkbuttons = []
         self._scoreboard = None
+
         self._initialize()
 
     def pack(self):
@@ -83,6 +84,10 @@ class GameView:
         )
         self.roll_dices_button.grid(row=3, column=0)
 
+        self.debug_var = StringVar(value=(game_service.get_current_turn(), game_service.get_current_turn_name()))
+        debug_label = ttk.Label(master=self._frame, textvariable=self.debug_var)
+        debug_label.grid(row=9, column=0)
+
     def _roll_dices(self):
         game_service.roll_dices([len(dice.state()) for dice in self._dice_checkbuttons])
         game_service.throws -= 1
@@ -115,6 +120,7 @@ class GameView:
         self.current_player_var.set(game_service.get_current_player())
         self.current_turn_var.set(game_service.get_current_turn_name())
         self.throws_left_var.set(f'{game_service.throws}/3')
+        self.debug_var.set((game_service.get_current_turn(), game_service.get_current_turn_name()))
         self._initialize_scoreboard()
 
 
