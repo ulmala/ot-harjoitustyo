@@ -16,7 +16,8 @@ def create_tables(connection):
 
     cursor.execute('''
         create table games (
-            id int primary key,
+            id integer primary key autoincrement,
+            scoreboard text,
             winner text,
             points int
         );
