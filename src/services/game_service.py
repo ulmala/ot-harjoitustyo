@@ -79,7 +79,7 @@ class GameService:
                 self.execute_bonus_round()
         else:
             self.game.current_player += 1
-        return True
+        return self.game_ends()
 
     def execute_bonus_round(self):
         """Executes the bonus round. This will be executed automatically when
@@ -90,6 +90,11 @@ class GameService:
             points = point_checker.dispatcher[self.game.current_turn](player, self.game.scoreboard)
             self.game.scoreboard.at['Bonus', player] = points
         self.game.current_turn += 1
+
+    def game_ends(self):
+        if self.turn_ends() and not self.turns_left():
+            return True
+        return False
 
     def turn_ends(self):
         """Checks if the turn/round ends. If the current player is the last one
