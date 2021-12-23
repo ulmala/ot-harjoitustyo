@@ -21,5 +21,5 @@ def lint(ctx):
     ctx.run('pylint src')
 
 @task
-def initialize_db(ctx):
+def init_db(ctx):
     ctx.run('python src/initialize_db.py')
