@@ -50,7 +50,16 @@ GameService luokka voi tallentaa pelin tietoja (pistetaulu, voittaja, voittajan 
 Sovelluksen pakkauskaavio näyttää seuraavalta:  
 <img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/pakkauskaavio.png?raw=true" width="500">
 
+## Tietojen tallennus
+
+
+
 ## Toiminnallisuudet
+Alla pari esimerkkiä kuinka käyttöliittyymästä käytetään sovellusta.   
 ### Pelin käynnistäminen  
 Alla oleva sekvenssikaavio kuvaa kuinka kaksi pelaajaa lisätään uuteen peliin.
 <img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/start_game_sekvenssi.png?raw=true" width="500">
+
+## Vuoron pelaaminen
+Alla oleva sekvenssikaavio kuvaa sovelluksen toiminnallisuuden, kun pelaaja heittää vuoronsa alussa nopat ja eikä heitä tämän jälkeen noppia uudestaan.
+<img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/play_turn_sekvenssi.png?raw=true" width="500">
