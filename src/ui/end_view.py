@@ -30,8 +30,8 @@ class EndView:
 
         winner, points = game_service.declare_winner()
         winner_label = ttk.Label(master=self._frame,
-                                 text=f'Winner is {winner}, with {points} points!',
-                                 font=('TkDefaultFont', 25))
+                                 text=f'Winner is {winner}with {points} points!',
+                                 font=('TkDefaultFont', 20))
         winner_label.grid(row=1, column=0, pady=(0,15))
 
         new_game_button = ttk.Button(master=self._frame, text='new game', command=self._new_game)
