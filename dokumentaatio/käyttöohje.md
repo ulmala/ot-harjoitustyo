@@ -5,13 +5,19 @@ Pura ladataun kansion sisältö ja siirry kansion sisälle. Seuraavat komennot t
 
 ## Sovelluksen käynnistäminen
 Asenna sovelluksen riippuvuudet komennolla:  
-```poetry install````
+```bash
+poetry install
+```
 
 Alusta sovelluksen käyttämä tietokanta komennolla:  
-```poetry run invoke init-db````
+```bash
+poetry run invoke init-db
+```
 
 Käynnistä sovellus komennolla:  
-```poetry run invoke start```
+```bash
+poetry run invoke start
+```
 
 ## Uden pelin aloittaminen
 
