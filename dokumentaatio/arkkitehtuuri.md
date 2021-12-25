@@ -61,5 +61,5 @@ Alla oleva sekvenssikaavio kuvaa kuinka kaksi pelaajaa lisätään uuteen peliin
 <img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/start_game_sekvenssi.png?raw=true" width="500">
 
 ## Vuoron pelaaminen
-Alla oleva sekvenssikaavio kuvaa sovelluksen toiminnallisuuden, kun pelaaja heittää vuoronsa alussa nopat ja eikä heitä tämän jälkeen noppia uudestaan.
+Alla oleva sekvenssikaavio kuvaa sovelluksen toiminnallisuuden, kun pelaaja heittää vuoronsa alussa nopat ja eikä heitä tämän jälkeen noppia uudestaan.  
 <img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/play_turn_sekvenssi.png?raw=true" width="500">
