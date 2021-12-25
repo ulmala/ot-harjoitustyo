@@ -106,19 +106,11 @@ class GameView:
         self.scoreboard.initialize()
 
     def _deselect_dices(self):
-        """Loops through all dice checkbuttons and invokes the checkbutton 
-        until it's state is unchecked.
-        """
         for i in range(5):
             while len(self._dice_checkbuttons[i].state()) != 0:
                 self._dice_checkbuttons[i].invoke()
 
     def _player_keeps_all_dices(self):
-        """Checks if player has checked all dice checkbuttons (wants to keep all dices)
-
-        Returns:
-            bool: True if all checkbuttons are checked, else False
-        """
         if all(dice == 1 for dice in [len(dice.state()) for dice in self._dice_checkbuttons]):
             return True
         return False

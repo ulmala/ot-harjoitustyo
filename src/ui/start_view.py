@@ -1,7 +1,4 @@
-from tkinter import Toplevel, ttk, constants
-
-from entities.player import Player
-from entities.game import Game
+from tkinter import ttk
 from services.game_service import game_service
 
 
@@ -11,7 +8,7 @@ class StartView:
         self._handle_game = handle_game
         self._frame = None
         self._top_scores = None
-        self._player_entires = []
+        self._player_entries = []
 
         self._initialize()
 
@@ -22,7 +19,9 @@ class StartView:
         self._frame.destroy()
 
     def _start_game_handler(self):
-        for entry in self._player_entires:
+        if all([len(entry.get()) == 0 for entry in self._player_entries]):
+            return
+        for entry in self._player_entries:
             if len(entry.get()) > 0:
                 game_service.add_player(entry.get())
         self._handle_game()
@@ -38,19 +37,19 @@ class StartView:
             command=self._start_game_handler
         )
 
-        start_button.grid(row=self._player_entires[-1].grid_info()['row'] + 1 , column=0)
+        start_button.grid(row=self._player_entries[-1].grid_info()['row'] + 1 , column=0)
 
         label = ttk.Label(self._frame, text='All time top 5 scores')
-        label.grid(row=self._player_entires[-1].grid_info()['row'] + 2, column=0, pady=(25,0))
+        label.grid(row=self._player_entries[-1].grid_info()['row'] + 2, column=0, pady=(25,0))
 
         self._initialize_top_scoreboard()
 
     def _initialize_player_entries(self):
         for i in range(game_service.game.max_players):
             player_label = ttk.Label(master=self._frame, text=f'Player {i+1}')
-            self._player_entires.append(ttk.Entry(master=self._frame))
+            self._player_entries.append(ttk.Entry(master=self._frame))
             player_label.grid(row=(i+1) * 2 - 1, column=0)
-            self._player_entires[-1].grid(row=(i+1)*2, column=0)
+            self._player_entries[-1].grid(row=(i+1)*2, column=0)
 
     def _initialize_top_scoreboard(self):
         self._top_scores = ttk.Treeview(master=self._frame,
@@ -66,4 +65,4 @@ class StartView:
                                     index='end',
                                     iid=i,
                                     values=(row[0], row[1]))
-        self._top_scores.grid(row=self._player_entires[-1].grid_info()['row'] + 3, column=0)
+        self._top_scores.grid(row=self._player_entries[-1].grid_info()['row'] + 3, column=0)

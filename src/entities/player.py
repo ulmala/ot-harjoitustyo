@@ -8,7 +8,7 @@ class Player:
         """Class consturctor
 
         Args:
-            name (str): name of the plauer
+            name (str): name of the player
         """
         self.name = name
 

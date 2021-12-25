@@ -17,11 +17,11 @@ class TestGameService(unittest.TestCase):
 
     def test_turns_left_returns_false_if_game_has_no_turns_left(self):
         self.game_service.game.current_turn = len(self.game_service.game.scoreboard) + 1
-        self.assertFalse(self.game_service.turns_left())
+        self.assertFalse(self.game_service._turns_left())
 
     def test_turns_left_returns_true_if_game_has_turns_left(self):
         self.game_service.game.current_turn = 2
-        self.assertTrue(self.game_service.turns_left())
+        self.assertTrue(self.game_service._turns_left())
 
     def test_roll_dices_does_not_roll_dices_which_player_wants_to_keep(self):
         self.game_service.game.dices = [1,2,3,4,5]
@@ -37,11 +37,11 @@ class TestGameService(unittest.TestCase):
 
     def test_turn_ends_returns_true_when_current_turn_ends(self):
         self.game_service.game.current_player = len(self.game_service.get_players()) - 1
-        self.assertTrue(self.game_service.turn_ends())
+        self.assertTrue(self.game_service._turn_ends())
     
     def test_turn_ends_returns_false_if_all_players_not_played_current_turn(self):
         self.game_service.game.current_player = 0
-        self.assertFalse(self.game_service.turn_ends())
+        self.assertFalse(self.game_service._turn_ends())
 
     def test_get_current_turn_name_returns_correct_turn_name(self):
         for idx, _ in self.game_service.game.scoreboard.iterrows():
@@ -52,7 +52,7 @@ class TestGameService(unittest.TestCase):
         self.game_service.game.current_turn = 6
         self.game_service.game.scoreboard[self.game_service.get_players()[0]] = [3, 6, 9, 12, 15, 18, '-', '-', '-', '-', '-', '-', '-', '-']
         self.game_service.game.scoreboard[self.game_service.get_players()[1]] = [3, 6, 9, 12, 15, 0, '-', '-', '-', '-', '-', '-', '-', '-']
-        self.game_service.execute_bonus_round()
+        self.game_service._execute_bonus_round()
         self.assertEqual(self.game_service.game.scoreboard.at['Bonus', self.game_service.get_players()[0]], 50)
         self.assertEqual(self.game_service.game.scoreboard.at['Bonus', self.game_service.get_players()[1]], 0)
 

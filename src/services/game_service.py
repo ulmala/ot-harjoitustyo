@@ -11,14 +11,13 @@ class GameService:
 
     Attributes:
         game: instance of Game class
-
-        LISÄÄ MUUT
+        game_repository: instance of GameRepository class
 
     """
     def __init__(self, game_repository=default_game_repository) -> None:
         """Class consturctor
         Args:
-            game (Game, optional): instance of class Game. Defaults to default_game.
+            game_repository (GameRepository): instance of class GameRepository. Defaults to default_game_repository.
         """
         self.game = Game()
         self._game_repository = game_repository
@@ -39,7 +38,7 @@ class GameService:
             return True
         return False
 
-    def turns_left(self) -> bool:
+    def _turns_left(self) -> bool:
         """Function which can be used to check if there is any turns left in the game
         (rows in the game scoreboard)
         Returns:
@@ -83,16 +82,16 @@ class GameService:
         if self.game_ends():
             return False
         self.game.throws = 3
-        if self.turn_ends():
+        if self._turn_ends():
             self.game.current_turn += 1
             self.game.current_player = 0
             if self.get_current_turn_name() == 'Bonus':
-                self.execute_bonus_round()
+                self._execute_bonus_round()
         else:
             self.game.current_player += 1
         return True
 
-    def execute_bonus_round(self):
+    def _execute_bonus_round(self):
         """Executes the bonus round. This will be executed automatically when
         first six rounds are played. Iterates over each player and checks if the
         are allowed to have bonus points. Updates the scoreboard.
@@ -109,12 +108,12 @@ class GameService:
         Returns:
             bool: True if game ended, else Fals
         """
-        if self.turn_ends() and not self.turns_left():
-            self.save_winner()
+        if self._turn_ends() and not self._turns_left():
+            self._save_winner()
             return True
         return False
 
-    def turn_ends(self) -> bool:
+    def _turn_ends(self) -> bool:
         """Checks if the turn/round ends. If the current player is the last one
         to play the turn, turn ends.
 
@@ -193,11 +192,10 @@ class GameService:
         """
         return self.game.dices
 
-
-    ### TÄMÄ PITÄÄ TEHDÄ LOPPUUN
-    def save_winner(self):
+    def _save_winner(self):
+        """Gets the winner and the points of the current game. Inserts them to the database.
+        """
         winner, points = self.declare_winner()
         self._game_repository.insert_game(self.game.scoreboard.to_csv(sep=';'), str(winner), int(points))
-        self._game_repository.get_all_games()
-        print(self._game_repository.get_top_5_high_scores())
+
 game_service = GameService()

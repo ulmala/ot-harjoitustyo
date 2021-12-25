@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk
 from services.game_service import game_service
 from entities.game import Game
 from ui.scoreboard import Scoreboard

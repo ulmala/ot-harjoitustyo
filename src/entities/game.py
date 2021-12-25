@@ -10,6 +10,9 @@ class Game:
         scoreboard: Yahtzee scoreboard represented as pandas dataframe
         current_turn: integer which holds the information on which row
                       (scoreboard) the game is currently on
+        current_player: integer ('index') of the current player, ranging from (1 to max_players)
+        dices: list of integers representing the dices (at the start all values are 'X')
+        throws: amount of throws player has left. Max 3, min 0 (turn ends)
     """
     def __init__(self):
         """Class constructor
