@@ -12,6 +12,7 @@ Sovelluksessa on vain yhdentasoisisa käyttäjiä; normaaleja pelaajia. Sovelluk
 - Käyttäjät syöttävät pelikohtaiset nimimerkit
 - Peli noudattaa pääsääntöisesti näitä Yatzyn sääntöjä: https://en.wikipedia.org/wiki/Yahtzee#Rules
     - Poikkeuksena, että tässä sovelluksessa pistetaulua pelataan järjestyksessä rivi riviltä
+    - Käyttöliittyymässä on linkki, joka avaa kyseisen sivun selaimeen
 - Sovelluksen pistetaulu sisältää pistetaulun "yläkerran", "alakerran" sekä bonuskierroksen
 - Pelissä näytetään koko ajan mitä riviä milläkin hetkellä heitetään
 - Omalla vuorollaan pelaaja valitsee mitkä nopat haluaa pitää ja mitkä heittää uudestaan

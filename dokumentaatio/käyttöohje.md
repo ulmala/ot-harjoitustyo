@@ -21,7 +21,7 @@ poetry run invoke start
 
 ## Uden pelin aloittaminen
 
-Pelaajat (esimerkissä kaksi) syöttävät nimimerkkinsä kenttiin ja painavat 'Start' painiketta.  
+Pelaajat (esimerkissä kaksi) syöttävät nimimerkkinsä kenttiin ja painavat 'Start' painiketta. Painamalla linkkiä "Click here to open game rules" sovellus avaa Wikipedian sivun missä kerrotaan pelin säännöt.  
 <img src="https://github.com/ulmala/ot-harjoitustyo/blob/master/dokumentaatio/imgs/käyttöohje/start_view.png?raw=true" width="500">   
 
 Pistetaulukossa rivin oranssi väri kertoo, että tätä riviä heitetään nyt. Sarakkeissa näkyvät pelaajien livepisteet. Pelaaja voi pitää haluamansa nopat valitsemalla kyseisen nopan checkboxin. Roll dices painikkeella heitetään nopat. Painikkeen alapuolella lukee minkä pelaajan vuoro on ja monta heittoa hänellä on jäljellä.  
