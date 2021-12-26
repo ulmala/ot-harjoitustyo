@@ -1,7 +1,7 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovellus on noppapeli Yatzyn digitaalinen versio. Sovelluksessa käyttäjä voi pelata Yatzy peliä ystäväänsä vastaan.
+Sovellus on noppapeli Yatzyn digitaalinen versio. Sovelluksessa käyttäjä voi pelata Yatzy peliä ystäviään vastaan.
 
 ## Käyttäjät
 Sovelluksessa on vain yhdentasoisisa käyttäjiä; normaaleja pelaajia. Sovellukseen ei kirjauduta erikseen sisään käyttäjätunnuksella.
