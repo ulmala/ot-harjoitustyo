@@ -1,5 +1,5 @@
 # Käyttöohje
-Lataa viimesin release TÄÄLTÄ.  
+Lataa viimesin release [täältä](https://github.com/ulmala/ot-harjoitustyo/releases).
 
 Pura ladataun kansion sisältö ja siirry kansion sisälle. Seuraavat komennot toteutetaan kansion sisällä.
 
