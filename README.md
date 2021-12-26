@@ -1,7 +1,7 @@
 # Yatzy
  Sovellus on Yatzy peli, jossa pelaajat voivat pelata Yatzya toisiaan vastaan. Pelaaminen tapahtuu graafisen käyttöliittymän kautta. Peli tukee tällä hetkellä 1-4 pelaajaa.  
  ## Releaset
- Viimeisimmän version voi ladata [täältä](https://github.com/ulmala/ot-harjoitustyo/releases/tag/viikko6)  
+ Viimeisimmän version voi ladata [täältä](https://github.com/ulmala/ot-harjoitustyo/releases/tag/loppupalautus)  
  Kaikki aikaisemmat releaset löytyvät [täältä](https://github.com/ulmala/ot-harjoitustyo/releases)
 
  ## Python versio
