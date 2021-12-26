@@ -2,7 +2,6 @@ import unittest
 from entities.game import Game
 from services.game_service import GameService
 from entities.player import Player
-from tests.helpers.fake_game import FakeGame
 
 
 class TestGameService(unittest.TestCase):
