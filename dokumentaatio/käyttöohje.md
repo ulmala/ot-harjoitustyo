@@ -1,7 +1,7 @@
 # Käyttöohje
 Lataa viimesin release [täältä](https://github.com/ulmala/ot-harjoitustyo/releases).
 
-Pura ladataun kansion sisältö ja siirry kansion sisälle. Seuraavat komennot toteutetaan kansion sisällä.
+Pura ladatun kansion sisältö ja siirry kansion sisälle. Seuraavat komennot toteutetaan kansion sisällä.
 
 ## Sovelluksen käynnistäminen
 Asenna sovelluksen riippuvuudet komennolla:  
