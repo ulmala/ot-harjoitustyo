@@ -1,13 +1,10 @@
 import unittest
 from services.game_service import GameService
 from services.point_checker import PointChecker
-from tests.helpers.fake_game import FakeGame
-from entities.player import Player
 
 class TestPointChecker(unittest.TestCase):
     def setUp(self):
         self.point_checker = PointChecker()
-        self.game = FakeGame()
         self.game_service = GameService()
         self.game_service.add_player('player_1')
         self.game_service.add_player('player_2')
