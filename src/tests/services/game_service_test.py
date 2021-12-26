@@ -14,6 +14,14 @@ class TestGameService(unittest.TestCase):
         self.game_service.game = Game()
         self.assertTrue(self.game_service.add_player('player1'))
 
+    def test_add_player_returns_false_if_max_players_achieved(self):
+        self.game_service.game = Game()
+        self.game_service.add_player('player1')
+        self.game_service.add_player('player2')
+        self.game_service.add_player('player3')
+        self.game_service.add_player('player4')
+        self.assertFalse(self.game_service.add_player('player15'))
+
     def test_turns_left_returns_false_if_game_has_no_turns_left(self):
         self.game_service.game.current_turn = len(self.game_service.game.scoreboard) + 1
         self.assertFalse(self.game_service._turns_left())
